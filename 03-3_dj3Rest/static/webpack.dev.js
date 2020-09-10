@@ -12,6 +12,7 @@ module.exports = env => {
     devtool: '#eval-source-map', //'source-map',
     entry: {
       index: './src/index.jsx', //'babel-polyfill',
+      todo: './src/indexTodo.jsx',
     },
 
     output: {

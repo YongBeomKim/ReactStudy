@@ -12,28 +12,19 @@ The official source code for 3.0 version of [Django for APIs](https://djangofora
 
 - **[Fenced Code Blocks Style in Web](https://markdownmonster.west-wind.com/docs/_4sf0may9m.htm)**
 
-```html
-<!-- Local files -->
-<link href="scripts/highlightjs/styles/github-gist.css" rel="stylesheet" />
-<script src="scripts/highlightjs/highlight.pack.js"></script>
-
-<!-- CDN Links -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
-
-<script>
-function highlightCode() {
-    var pres = document.querySelectorAll("pre>code");
-    for (var i = 0; i < pres.length; i++) {
-        hljs.highlightBlock(pres[i]);
-    }
-}
-highlightCode();
-</script>
-```
-
 ### Django 3 for AIPs Code converting for Hybrid Version
 
 **[GitHub Codes](https://github.com/wsvincent/djangoforapis_30)**
 
 ![Cover](https://raw.githubusercontent.com/wsvincent/restapiswithdjango/master/cover.jpg)
+
+### After Works : vue-cli Encrypt RSA to Django
+
+This work has a problem of the Props data is Exposed in HTML debug tools, so Need to adding the Crypto module.
+
+- **[vue-cli FrontEnd RSA & django RSA Backhand](https://blog.csdn.net/qq_41860162/article/details/89358772)**
+- **[Django-crypto-fields](https://pypi.org/project/django-crypto-fields/)**
+
+## Sites
+
+- **[Tutorial: Django REST with React](https://www.valentinog.com/blog/drf/)**

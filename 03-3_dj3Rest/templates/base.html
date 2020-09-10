@@ -7,18 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Nomalization after that Bootstrap & Awesome Font -->
-    <link rel="stylesheet" type="text/css" href="{% static 'public/normalize.min.css' %}">
+    <link type="text/css" href="{% static 'public/normalize.min.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet"> 
 
-
     <!-- MarkDown Highlight.js Style Add & Activated. -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script> 
-
 
     <title>{% block title %}{% endblock title %}</title>
 
@@ -45,10 +43,10 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Dj3API</a>
+                <a class="nav-link" href="/">Dj3API</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Todo</a>
+                <a class="nav-link" href="{% url 'todos:index' %}">Todos</a>
             </li>
         </ul>
     </div>

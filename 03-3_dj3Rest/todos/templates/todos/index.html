@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load react %}
+
+{% block title %}
+todos
+{% endblock title %}
+
+
+{% block content %}
+<br />
+<div id="todos" />
+{% endblock content %}
+
+{% block js %}
+<script src="{% react js_app_name %}"></script>
+<script>
+const list = {{props | safe}};
+</script>
+{% endblock js %}
