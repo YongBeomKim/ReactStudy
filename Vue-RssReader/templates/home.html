@@ -1,0 +1,112 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}Js in Django{% endblock title %}</title>
+    <script src="{% static 'js/apexcharts.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/axios.min.js' %}"></script>
+    <script src="{% static 'js/vue.js' %}"></script>
+</head>
+
+<body>
+
+  <div id="app-text"> vue 객체
+    <h1>{{msg}}</h1>
+  </div>
+
+  {{ chartdata|safe }}
+
+<h2>apex chart</h2>
+<div id="charts"></div>
+
+<script>
+// views.py 에서 전달된 Django 객체로 출력합니다
+var chart = new ApexCharts(
+  document.querySelector("#charts"),
+  {{ chartdata|safe }}
+);
+chart.render();
+
+new Vue({
+  el: '#app-text',
+  data:{
+    msg:'안녕하세요'
+  }
+})
+</script>
+</body>
+
+
+<!-- <h2>Apex chart in Django - Simple lines</h2>
+<div>  {{ chartdata|safe }} </div>
+<div id="charts"></div><br/>
+
+<h2> get data Form Json API </h2>
+<div id="appl" data-url="{% url 'apex_json' %}"></div>
+</br/>
+
+<h2>Apex chart in Django - Mixed Y axis</h2>
+<div id="chart-mix"></div></br/> -->
+
+
+<!-- Ajax 를 Vue와 Axios를 사용하여 비동기로 구현하기
+<script src="{% static 'js/vue-apexcharts.js' %}"></script>
+<script src="{% static 'js/apex/mix_chart.js' %}"></script>
+<script>
+axios.get('http://localhost:8000/json')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+</script>
+
+<script>
+// ./json 으로 넘어온 Api를 Axios로 받아서 출력합니다
+new Vue({
+  el:'#chart-json',
+  methods: {
+    getDate: function() {
+      axios.get('/json').then(function(response){
+        console.log(response);
+      });
+    }
+  }
+});
+</script>
+
+<script>
+  $.ajax({
+    // json 데이터를 추출하기 위한 Tag 특정
+    url: $("#chart-json").attr("data-url"),
+    dataType: 'json',
+    success: function (data) {
+      // Chart 출력을 위한 Tag 특정
+      Highcharts.chart("chart-json", data);
+    }
+  });
+</script>
+
+<script>
+new Vue({ // apexcharts 컴포넌트를 생성합니다
+  el: '#chart-apex',
+  components: { apexchart: VueApexCharts,},
+  data: {
+    series: [{
+      data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+    }],
+    chartOptions: {
+      plotOptions: { bar: { horizontal: true, } },
+      dataLabels : { enabled: false },
+      xaxis: {
+        categories: ['South Korea', 'Canada', 'United Kingdom',
+          'Netherlands', 'Italy', 'France', 'Japan',
+          'United States', 'China', 'Germany'],
+      }
+    }
+  }
+})
+</script>-->

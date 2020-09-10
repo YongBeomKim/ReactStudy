@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Ajax
+{% endblock title %}
+
+
+{% block content %}
+<br />
+<div class="container">
+
+  <div class="row justify-content-center">
+    <button type="button" class="btn btn-success btn-lg">GET</button>
+    <ul id="time"></ul>
+  </div>
+
+  <div class="col-6 text-center mt-5">
+    {% csrf_token %}
+    <ul id="right"></ul>
+  </div>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script><!-- jQuery 라이브러리 사용 -->
+<script>
+  $(document).ready(function () {
+
+    var csrf = $("input[name=csrfmiddlewaretoken]").val();
+
+    $(".btn").click(function () {
+      $.ajax({
+        url: '',
+        type: 'get',
+        data: {
+          // request.GET.get['button_text']
+          button_text: $(this).text()
+        },
+        success: function (response) {
+          $(".btn").text(response.seconds)
+          $("#time").append('<li>' + response.seconds + '</li>')
+        }
+      });
+    });
+
+    $("#time").on('click', 'li', function () {
+      $.ajax({
+        url: '',
+        type: 'post',
+        data: {
+          text: $(this).text(),
+          csrfmiddlewaretoken: csrf
+        },
+        success: function (response) {
+          $('#right').append('<li>' + response.data + '</li>')
+
+        }
+      })
+    })
+  })
+</script>
+
+{% endblock js %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Responsive Navbar Tutorial
+{% endblock title %}
+
+
+{% block content %}
+<!-- header Navbar Area-->
+<header class="main-header">
+    <div class="logo">
+        <a href="{% url 'scss' %}">SCSS</a>
+    </div>
+
+    <input type="checkbox" class="menu-btn" id="menu-btn">
+    <label for="menu-btn" class="menu-icon">
+        <span class="menu-icon__line"></span>
+    </label>
+
+    <ul class="nav-links">
+        <li class="nav-link">
+            <a href="#">소개</a>
+        </li>
+        <li class="nav-link">
+            <a href="#">작품들</a>
+        </li>
+        <li class="nav-link">
+            <a href="#">회사</a>
+        </li>
+        <li class="nav-link">
+            <a href="#">연락처</a>
+        </li>
+    </ul>
+</header>
+
+<!-- content area -->
+<div class="hero">
+    <h1>Hero Text</h1>
+</div>
+
+<div id="root"></div>
+
+<div class="container">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus officia minus eveniet quia ullam veritatis dolores expedita totam asperiores repudiandae.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias assumenda cumque numquam vel? Beatae esse commodi vitae voluptates tempora architecto labore quas amet non, sunt laudantium fuga. Aperiam rem eaque quos! Ratione, aliquam aperiam cumque eveniet assumenda esse? Aperiam, officia quis assumenda quia ea quae perferendis consequatur. Veritatis, itaque rem?</p>
+</div>
+
+
+{% endblock content %}
+
+
+{% block js %}
+{% comment 'webpack bundle' %}
+<!-- Production Mode JavaScript -->
+<script src="{% static 'dist/home.bundle.js' %}"></script>
+{% endcomment %}
+
+<!-- webpack dev server Hot Reloaded Module -->
+<script src="http://localhost:9000/home.bundle.js"></script>
+{% endblock js %}

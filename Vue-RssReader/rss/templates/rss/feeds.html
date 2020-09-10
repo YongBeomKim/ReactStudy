@@ -1,0 +1,21 @@
+<div>
+
+	<!-- verbatim 은 해당영역을 Django 랜더링 하지 않는 목적으로
+	Anguler , React, Vue 등의 중괄호 충돌방지용 태그이다 -->
+
+	{% verbatim %}
+	<div v-if="items.length" v-for="item in items" class="row mb-2">
+		<div class="col">
+
+			<p>
+				{{item.published}}
+				<a v-bind:href="item.link">{{item.title}}</a>
+				{{item.author}}
+			</p>
+		</div>
+		<div v-if="!items.length">
+			<p>Enter your favorite RSS feed above.</p>
+		</div>
+	</div>
+	{% endverbatim %}
+</div>

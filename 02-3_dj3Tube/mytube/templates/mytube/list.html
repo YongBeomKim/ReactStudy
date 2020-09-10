@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="row">
+    {% for video in video_list %}
+    <div class="col-3 md-3">
+        <div class="card">
+            <img src="{{video.photo.url}}" alt="HomeImage" class="w-100">
+            <a href="{% url 'mytube:detail' video.pk %}" class="text-dark">
+            <b>{{video.title}}</b>
+            <p class="small">
+                {{video.description | truncatechars:30}}
+            </p>
+            <p class="text-gray small">
+                {{ video.created_at | timesince }} 전, <br/>
+                조회수 : {{ video.view_count }}    
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<hr />
+{% bootstrap_pagination page_obj %}
+
+<hr />
+<a href="{% url 'mytube:new' %}">업로드</a>
+
+{% endblock content %}

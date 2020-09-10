@@ -1,0 +1,80 @@
+{% load static %}
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		{% block title %}
+		{% endblock title %}
+	</title>
+
+	<!-- https://cdnjs.com/libraries/normalize -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
+	{% bootstrap_css %}
+	{% bootstrap_jquery %}
+	{% bootstrap_javascript %}
+
+	{% block style %}
+	{% endblock style %}
+</head>
+
+<body>
+	<!-- Navigation bar -->
+
+	<div class="container">
+		<nav class="navbar">
+			<a href="" class="navbar-brand">
+				<i class="fa fa-youtube-play text-danger mr-1"></i>
+				MyTube
+			</a>
+			<form action="{% url 'mytube:list' %}" method="get" class="form-inline">
+				
+				<!-- Item Search Function -->
+				<input type="text" name="q" class="form-control mr-2" value="{{ request.GET.q }}" />
+				<input type="submit" value="Search" class="btn btn-danger" />
+			</form>
+			<div class="">
+				{% if user.is_authenticated %}
+				<a href="{% url 'mytube:new' %}" class="btn btn-danger">Upload</a>
+				<a href="{% url 'logout' %}" class="btn btn-outline-info">LogOut</a>
+				{% else %}
+				<a href="{% url 'login' %}" class="btn btn-outline-danger">login</a>
+				<a href="{% url 'signup' %}" class="btn btn-danger">SignUp</a>
+				{% endif %}
+			</div>
+		</nav>
+
+		<!-- main content area-->
+		<div class="card">
+			<div class="card-body">
+				{% block content %}
+				{% endblock content %}
+
+				<p>&copy; 2020. Momukji Lab</p>
+			</div>
+		</div>
+	</div>
+
+	{% block footer %}
+	{% endblock footer %}
+	<script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
+	<script>
+		const toggleBtn = document.querySelector('.navbar__toogleBtn');
+		const menu = document.querySelector('.navbar__menu');
+		const icons = document.querySelector('.navbar__icons');
+
+		toggleBtn.addEventListener('click', () => {
+			menu.classList.toggle('active');
+			icons.classList.toggle('active');
+		})
+	</script>
+	{% block js %}
+	{% endblock js %}
+</body>
+
+</html>

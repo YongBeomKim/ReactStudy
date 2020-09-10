@@ -1,0 +1,24 @@
+{# tutorial/templates/tutorial/people.html #}
+{% load render_table from django_tables2 %}
+<!doctype html>
+<html>
+    <head>
+        <title>List of persons</title>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    </head>
+    <body>
+    <h2>django_tables2 로 구현한 테이블</h2><br/>
+
+    <!-- https://stackoverflow.com/questions/51452488/exporting-of-django-tables2 -->
+    {% load querystring from django_tables2 %}
+    <a href="{% querystring '_export'='csv' %}">Download CSV</a>
+    <a href="{% querystring '_export'='xlsx' %}">Download XLSX</a>
+
+    <div>{% render_table table %}</div>
+
+    {% for format in table.export_formats %}
+        <p>{{ format }}</p>
+    {% endfor %}
+
+    </body>
+</html>

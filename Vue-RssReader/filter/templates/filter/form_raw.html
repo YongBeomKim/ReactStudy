@@ -1,0 +1,21 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  {# form 생성객체를 post 방식으로 암호화 하여 전달한다 #}
+  <form method="post">
+    {% csrf_token %}
+
+    {# crispy 스타일로 폼을 재정의 한다 #}
+    {{ form | crispy }}
+    <button type='submit'>전송</button>
+  </form>
+</body>
+</html>

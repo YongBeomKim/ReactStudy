@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="../static/js/vue.min.js"></script>
+    <script src="../static/js/axios.min.js"></script>
+</head>
+<body>
+<div id="app-text"> vue 객체
+  <h1>{{msg}}</h1>
+</div>
+
+<div id="app-data">
+  <textarea v-model="message"></textarea>
+  <pre>{{$data}}</pre>
+</div>
+
+<script>
+axios.get('http://localhost:8000/json')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+new Vue({
+  el: '#app-text',
+  data:{
+    msg:'안녕하세요'
+  }
+})
+
+new Vue({
+  el:'#app-data',
+  data : {
+    message : '작업을 진행합니다'
+  }
+})
+</script>
+
+</body>
+</html>

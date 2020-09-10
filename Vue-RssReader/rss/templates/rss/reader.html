@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+<div id="rss-app" class="container mt-4">
+	<div class="row mb-4">
+		<div class="col-4">
+			<input type="text" v-model="newLink" placeholder="RSS feed Url" class="form-control" />
+		</div>
+		<div class="col-2">
+			<button class="btn btn-secondary" @click="newFeed">Save</button>
+		</div>
+	</div>
+	{% include "rss/feeds.html" %}
+</div>
+
+{% load static %}
+<script type="application/javascript" src="{% static 'rss/app.js' %}"></script>
+<script type="application/javascript">
+	window.addEventListener("load", function() {
+		rssApp.reload();
+	});
+</script>
+{% endblock %}

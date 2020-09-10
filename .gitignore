@@ -1,0 +1,60 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+
+# dependencies
+**/.vscode
+**/node_modules
+**/dist
+**/migrations
+./**/yarn.lock
+./**/package-lock.json
+
+
+__init__.py
+**/__pycache__
+
+
+# Django Auth Keys.
+_key.json
+*.pyc
+*.mp4
+*.cnf
+*.jpg
+*.png
+*.ico
+db.sqlite3
+__init__.py
+django.cache
+
+# Jupyter Notebook
+# Remove previous ipynb_checkpoints
+# $ git rm -r .ipynb_checkpoints/
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+
+# IPython
+profile_default/
+ipython_config.py
+
+
+# testing
+**/coverage
+
+# production
+**/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# .babelrc
+yarn.lock

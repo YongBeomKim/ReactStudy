@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+<script src="{% static 'crudjs/ajax_crud.js' %}"></script>
+
+
+{% block content %}
+
+crud js page
+
+<br><br><br><br><br>
+<div class="boxA">
+    <form class="form-inline">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Firstname</label>
+            <input type="text" id="firstname" class="form-control" style="width:30%;" required="required"/>
+            <label>Lastname</label>
+            <input type="text" id="lastname" class="form-control" style="width:30%;" required="required"/>
+            <button type="button" id="create" class="btn btn-sm btn-primary">Create</button>
+        </div>
+    </form>
+</div>
+<br>
+
+<div id="result" class="boxB"></div>
+{% endblock %}

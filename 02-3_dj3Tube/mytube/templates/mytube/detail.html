@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <video controls class="w-100">
+        <source src="{{ video.file.url }}">
+    </video>
+
+    <h4>{{ video.title }}</h4>
+
+    Author : {{ video.auther.email| default:video.author.username }}
+
+    {{ video.description | linebreaks }}
+
+    View Count : {{ video.view_count }}
+
+
+    <hr/>
+    {% if user == video.author %}
+        <a href="{% url 'mytube:edit' video.pk %}" class="btn btn-danger">Edit</a>
+        <a href="{% url 'mytube:delete' video.pk %}" class="btn btn-outline-danger">Delete</a>
+    {% endif %}
+
+    Comment ( {{ video.comment_set.all.count }} ) 
+
+    {{video.comment_set | safe}}
+
+    <form action={% url 'mytube:new_comment' video.pk %} method="post">
+        {% csrf_token %}
+        {% bootstrap_form comment_form layout="inline" %}
+        <input type="submit" value="Save Item" class="btn btn-danger"/>
+
+    </form>
+    
+    {% for comment in video.comment_set.all  %}
+        {{ comment }}
+    {% endfor %}
+
+{% endblock content %}

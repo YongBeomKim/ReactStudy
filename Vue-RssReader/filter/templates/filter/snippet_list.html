@@ -1,0 +1,17 @@
+{% load bootstrap %}
+
+{% block title %}Snippet List{% endblock %}
+
+
+{% block content %}
+{% filter.form | bootstrap %}
+
+{% endfilter %}
+<ul>
+  {% for snippet in filter.qs %}
+  <li>
+    <a herf = "{% url 'filter:detail' snippet.id %}">{{snippet.first_name}}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>엑셀파일 읽기</title>
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />-->
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    </head>
+    <body style="margin-top: 30px;margin-left: 30px;">
+        <!-- form 을 사용하여 엑셀파일 불러오기 -->
+        <form action="{% url 'excel:index' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file"
+                   title="엑셀파일 호출"
+                   name="excel_file"
+                   style="border: 1px solid black; padding: 5px;"
+                   required="required"><br/>
+                 </br/>
+
+            <input type="submit"
+                   value="전송하기"
+                   style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+        </form>
+
+        <!--위에서 불러온 결과를 출력-->
+        {% if excel_type %}
+        <br />
+        <h2>{{excel_type}} 자료 입니다</h2>
+
+      <!-- https://stackoverflow.com/questions/2906582/how-to-create-an-html-button-that-acts-like-a-link -->
+        <button onclick="location.href='{% url 'excel:index' %}'" type="button">새로고침</button>
+
+        {{excel_html | safe}}
+
+        {% endif %}
+    </body>
+</html>

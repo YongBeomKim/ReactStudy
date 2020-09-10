@@ -1,0 +1,17 @@
+{% load bootstrap %}
+<title>명단목록</title>
+
+<div class="container">
+  <form action="" method="GET">
+    {{ filter.form | bootstrap }}
+    <button type="submit" class="btn btn-primary">검색</button>
+  </form>
+
+<ul>
+  {% for people in filter.qs  %}
+  <li>
+    <a href="{% url 'filter:detail' people.id %}">{{people.first_name}}</a>
+  </li>
+  {% endfor %}
+</ul>
+</div>

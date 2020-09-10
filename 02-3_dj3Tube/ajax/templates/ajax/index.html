@@ -1,0 +1,13 @@
+{% load static %}
+{% block content %}
+<link rel="icon" href="{% static 'favicon.ico' %}">
+
+React Ajax Test Page
+<div id="root"></root>
+{% endblock content %}
+
+{% block js %}
+
+<!-- webpack dev server Hot Reloaded Module -->
+<script src="http://localhost:3000/index.bundle.js"></script>
+{% endblock js %}

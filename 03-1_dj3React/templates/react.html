@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load react %}
+
+
+{% block content %}
+<h1>Hybrid React & Django</h1>
+<div id="root" />
+{% endblock content %}
+
+
+{% block js %}
+<script src="{% react js_app_name %}"></script>
+<script>
+    const props = {{ props | safe }};
+    renderApp(props);
+</script>
+{% endblock js %}

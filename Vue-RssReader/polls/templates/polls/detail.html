@@ -1,0 +1,21 @@
+<!-- Question 테이블의 내용을 출력한다 -->
+
+<h1>{{question.question_text}}</h1>
+
+<!-- views.py 에서 오류가 발생하면
+error_message 객체에 메세지를 담아서 전달한다-->
+
+{% if error_message %}
+  <p><strong>{{error_message}}</strong></p>
+{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+  {% csrf_token %}
+  {% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{forloop.counter}}"
+    value="{{choice.id}}"/>
+
+    <label for="choice{{forloop.counter}}">{{choice.choice_text}}</label><br/>
+  {% endfor %}
+  <input type="submit" value="Vote" />
+</form>

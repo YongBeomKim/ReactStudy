@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load react %}
+
+
+{% block content %}
+<h1>React API with Django</h1>
+<div id="react" />
+{% endblock content %}
+
+
+{% block js %}
+<script src="{% react js_app_name %}"></script>
+<script>
+    const props = {{ props | safe }};
+    renderApp(props);
+</script>
+{% endblock js %}

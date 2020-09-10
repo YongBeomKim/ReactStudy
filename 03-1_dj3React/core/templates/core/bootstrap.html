@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+filter
+{% endblock title %}
+
+{% block style %}
+<style>
+body {
+  margin-top: 5rem;
+}
+ul {
+  list-style-type: none;
+}
+</style>
+{% endblock style %}
+
+
+
+
+{% block content %}
+<h1>Django Filter</h1>
+
+
+<!-- HTML Form's name="GET Query names" -->
+
+<form>
+  <div class="form-row">
+    <div class="form-group col-12">
+      <div class="input-group">
+        <input class="form-control py-2 border-right-0 border" type="search" name="title_contains"
+          placeholder="Title contains..." />
+        <span class="input-group-append">
+          <div class="input-group-text bg-transparent">
+            <i class="fa fa-search"></i>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-12">
+      <div class="input-group">
+        <input class="form-control py-2 border-right-0 border" type="search" name="id_exact"
+          placeholder="ID exact..." />
+        <span class="input-group-append">
+          <div class="input-group-text bg-transparent">
+            <i class="fa fa-search"></i>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-12">
+      <div class="input-group">
+        <input class="form-control py-2 border-right-0 border" type="search" name="title_or_author"
+          placeholder="Title or Author..." />
+        <span class="input-group-append">
+          <div class="input-group-text bg-transparent">
+            <i class="fa fa-search"></i>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6 col-lg-2">
+      <label for="inputEmail4">ViewCount Max</label>
+      <input type="number" min=0 class="form-control" id="inputEmail4" placeholder="0" name="view_count_max">
+    </div>
+    <div class="form-group col-md-6 col-lg-2">
+      <label for="inputPassword4">ViewCount Min</label>
+      <input type="number" min=0 class="form-control" id="inputPassword4" placeholder="1000?" name="view_count_min">
+    </div>
+    <div class="form-group col-md-6 col-lg-2">
+      <label for="inputEmail4">P-Date Min</label>
+      <input type="date" class="form-control" id="inputEmail4" name="date_min">
+    </div>
+    <div class="form-group col-md-6 col-lg-2">
+      <label for="inputPassword4">P-Date Max</label>
+      <input type="date" class="form-control" id="inputPassword4" name="date_max">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputPassword4">Category</label>
+      <select id="inputState" class="form-control" name="category">
+        <option selected>Choose...</option>
+        {% for cat in categories %}
+        <option value="{{cat}}">{{cat}}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="reviewed" name="reviewed">
+      <label class="form-check-label" for="reviewed">
+        Reviewed
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="notReviewed" name="notReviewed">
+      <label class="form-check-label" for="notReviewed">
+        Not Reviewed
+      </label>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<hr/>
+
+<div class="row">
+  {% if queryset is None %}
+    <h1>Search Result is None</h1>
+  {% else %}
+<ul>
+  {% for journal in queryset %}
+    <li>
+      {{journal.title}}
+      <span>Author : {{ journal.author.name }}</span>
+      <span>
+        {% for cat in journal.categories.all %}
+          {{ cat }}
+        {% endfor %}
+      </span> 
+      <span>Publish date : {{ journal.publish_date }}</span> 
+      <span>View Count : {{ journal.views }}</span> 
+      <span>Reviewed : {{ journal.reviewed }}</span> 
+    </li>
+    <hr/>
+    {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+{% endblock content %}

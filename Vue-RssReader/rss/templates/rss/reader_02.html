@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+
+{# form 객체를 추가합니다 #}
+<form action="" method="get">
+	<input type="text" placeholder="RSS 주소를 입력하세요" name="url">
+	<button tyoe="submit">Go</button>
+</form>
+
+
+{# title 을 입력합니다 #}
+{% if feed %}
+
+	<h2>Title : {{feed.feed.title}}</h2>
+	<p>reader.html 파일의 내용을 보여드립니다!</p>
+
+
+	{# feed 객체를 보여줍니다 #}
+	{% if feed.items %}
+		{% for item in feed.items %}
+
+		<div>
+			<p>{{item.published}}
+				<a href="{{item.link}}">{{item.title}}</a>
+			{{item.author}}</p>
+		</div>
+		{% endfor %}
+	{% endif %}
+
+{% endif %}
+
+{% endblock body %}
