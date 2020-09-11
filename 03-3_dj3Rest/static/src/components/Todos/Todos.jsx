@@ -23,7 +23,8 @@ class Todos extends Component {
       <Fragment>
         {this.state.todos.map((item) => (
           <div key={item.id}>
-            <h1>{item.title}</h1>
+            <br />
+            <h3>{item.title}</h3>
             <span>{item.body}</span>
           </div>
         ))}

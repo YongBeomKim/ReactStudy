@@ -58,7 +58,14 @@ INSTALLED_APPS = [
     # 'rest_framework.authtoken',
     # 'drf_yasg',
     "todos.apps.TodosConfig",
+    "posts.apps.PostsConfig",
 ]
+
+# React.js Rest Framework Setting..
+# https://www.django-rest-framework.org/api-guide/settings/
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny",]
+}
 
 MIDDLEWARE = [
     # "django.middleware.security.SecurityMiddleware",
@@ -174,41 +181,6 @@ else:
     STATIC_URL = "/static/"
     STATIC_ROOT = [BASE_DIR / "staticfiles"]
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# React.js Rest Framework Setting..
-# https://www.django-rest-framework.org/api-guide/settings/
-REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny",]
-}
-
-
-# Django Restful API Settings..
-# Pagination & authentication scheme Setting
-# https://www.django-rest-framework.org/api-guide/pagination/
-# https://www.django-rest-framework.org/api-guide/authentication/
-# REST_FRAMEWORK = {
-#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-#     'PAGE_SIZE': 5,
-#     'DEFAULT_FILTER_BACKENDS': [
-#         'django_filters.rest_framework.DjangoFilterBackend'
-#     ],
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework.authentication.BasicAuthentication',
-#         'rest_framework.authentication.SessionAuthentication',
-#     ],
-#     # Restful Framework throttling speed
-#     # https://www.django-rest-framework.org/api-guide/throttling/
-#     'DEFAULT_THROTTLE_CLASSES': [
-#         'rest_framework.throttling.AnonRateThrottle',
-#         'rest_framework.throttling.UserRateThrottle'
-#     ],
-#     'DEFAULT_THROTTLE_RATES': {
-#         'anon': '5/hour',  # Anonymous API Speed
-#         'user': '20/hour', # Certificate user API Speed
-#         #'game-categories': '30/hour'
-#     }
-# }
-
 
 # # from django.contrib.auth.decorators import login_required
 # # https://stackoverflow.com/questions/3578882/how-to-specify-the-login-required-redirect-url-in-django

@@ -4,12 +4,14 @@ from rest_framework import generics
 from .models import Todo
 from .serializers import TodoSerializer
 
-
+# ListAPIView : read-only endpoint collection
 class ListTodo(generics.ListAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
 
 
+# RetrieveAPIView : read-only single endpoint.
+# (analogous to a DetailView)
 class DetailTodo(generics.RetrieveAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
