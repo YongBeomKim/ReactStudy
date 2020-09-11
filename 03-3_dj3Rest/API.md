@@ -62,6 +62,34 @@ The `api` app will not have its **own database models** and will expose a **sing
 
 ## Chapter 7: User Authentication
 
+### JSON Web Tokens (JWTs).
+
 **HTTP** is a **stateless protocol** so Each time a user requests a restricted resource it must verify itself. The solution is to pass along a **unique identifier with each HTTP request.**
 
-**Django REST Framework** ships with **four** different built-in authentication options: **basic, session, token,** and **default**.
+**Django REST Framework** ships with **four** different built-in authentication options: `basic`, `session`, `token` and `default`. And there are many more third-party packages that offer additional features like `JSON Web Tokens` (JWTs).
+
+```r
+<Client>
+-------->
+GET / HTTP/1.1
+                           <Server>
+    <------------------------------
+          HTTP/1.1 401 Unauthorized
+            WWW-Authenticate: Basic
+
+<Client>
+-------->
+GET / HTTP/1.1
+Authorization: Token 401f7ac837da42
+( unencrypted base64 encoded )
+
+                           <Server>
+    <------------------------------
+                    HTTP/1.1 200 OK
+```
+
+Django REST Frameworks’ built-in `TokenAuthentication` is deliberately quite basic. `JSON Web Tokens` (JWTs) are a new, enhanced version of tokens that can be added to Django REST Framework via **several third-party package**. JWTs have several benefits including the ability to **generate unique client tokens** and **token expiration** with a third-party service like `Auth0`.
+
+### Default Authentication
+
+`DEFAULT-PERMISSION-CLASSES` was set to `AllowAny` before we updated it to `IsAuthenticated`.The `DEFAULT_AUTHENTICATION_CLASSES` are set by default to `SessionAuthentication` and `BasicAuthentication` in `settings.py` file.
