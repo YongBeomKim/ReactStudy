@@ -63,8 +63,18 @@ INSTALLED_APPS = [
 
 # React.js Rest Framework Setting..
 # https://www.django-rest-framework.org/api-guide/settings/
+
+# "DEFAULT_PERMISSION_CLASSES" Settings..
+# • AllowAny : any user, authenticated or not, has full access
+# • IsAuthenticated : only authenticated, registered users have access
+# • IsAdminUser : only admins/superusers have access
+# • IsAuthenticatedOrReadOnly : unauthorized users can view, but
+#       only authenticated users have write, edit, or delete privileges
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny",]
+    "DEFAULT_PERMISSION_CLASSES": [
+        # "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.permissions.AllowAny",
+    ]
 }
 
 MIDDLEWARE = [
