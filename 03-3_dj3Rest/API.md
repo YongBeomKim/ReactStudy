@@ -54,7 +54,14 @@ HTTP request: it worked (2xx), it was redirectedsomehow (3xx), the client made a
 
 A traditional Django website consists of a **single projectand** one (or more)apps representing discrete(clearly separate or different in shape or form) functionality.
 
-
 ### Django REST Framework
 
 The `api` app will not have its **own database models** and will expose a **single endpoint** that lists out all books in JSON. There are **multiple ways we can organize these files** however my preferred approachis to create a dedicated `api` app
+
+<br/>
+
+## Chapter 7: User Authentication
+
+**HTTP** is a **stateless protocol** so Each time a user requests a restricted resource it must verify itself. The solution is to pass along a **unique identifier with each HTTP request.**
+
+**Django REST Framework** ships with **four** different built-in authentication options: **basic, session, token,** and **default**.
