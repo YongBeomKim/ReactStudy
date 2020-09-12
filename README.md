@@ -9,4 +9,4 @@ React.js Study with Django in 2020.
 # References Sites
 
 - **[Building a SaaS Application with Django](https://www.saaspegasus.com/guides/)**
-- **[Gitignore](https://www.toptal.com/developers/gitignore)**
+- **[Gitignore Generator](https://www.toptal.com/developers/gitignore)**

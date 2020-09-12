@@ -24,8 +24,9 @@ urlpatterns = [
     path("", index, name="index"),
     path("api/", api, name="api"),
     path("api-auth/", include("rest_framework.urls")),
-    # Implement your own user authentication endpoints
+    # Implement your own User Authentication End points
     path("dj-rest-auth/", include("dj_rest_auth.urls")),
+    path("dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
     path("todos/", include("todos.urls")),
     path("posts/", include("posts.urls")),
 ]

@@ -51,12 +51,20 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
     "whitenoise.runserver_nostatic",
     "django_extensions",
     "bootstrap4",
+    # Rest Framework 3rd-party apps
     "rest_framework",
     "rest_framework.authtoken",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
     # 'drf_yasg',
+    # User Created Apps
     "todos.apps.TodosConfig",
     "posts.apps.PostsConfig",
 ]
@@ -84,6 +92,9 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ],
 }
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+SITE_ID = 1
 
 MIDDLEWARE = [
     # "django.middleware.security.SecurityMiddleware",
@@ -204,6 +215,6 @@ else:
 # # https://stackoverflow.com/questions/3578882/how-to-specify-the-login-required-redirect-url-in-django
 # LOGIN_URL = '/api-auth/login'
 # LOGIN_REDIRECT_URL = '/api-auth/login'
-LOGIN_URL = "/admin/login"
-LOGOUT_URL = "/"
-LOGIN_REDIRECT_URL = "/admin/login"
+# LOGIN_URL = "/admin/login"
+# LOGOUT_URL = "/"
+# LOGIN_REDIRECT_URL = "/admin/login"
