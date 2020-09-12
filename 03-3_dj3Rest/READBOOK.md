@@ -142,3 +142,6 @@ SITE_ID = 1
 ```
 
 `REST_FRAMEWORK` setting is 1) Sessions : Browsable API and the ability to log in & out. 2) BasicAuthentication : `rest_framework.authentication.BasicAuthentication` is pass the session ID in HTTP headers but not Using this time, 3) TokenAuthentication : Using the 'rest_framework.authtoken' POST API.
+
+My danger paragraph.
+{: .alert .alert-danger}
