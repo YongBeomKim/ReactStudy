@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "bootstrap4",
     "rest_framework",
-    # 'rest_framework.authtoken',
+    "rest_framework.authtoken",
     # 'drf_yasg',
     "todos.apps.TodosConfig",
     "posts.apps.PostsConfig",
@@ -72,9 +72,17 @@ INSTALLED_APPS = [
 #       only authenticated users have write, edit, or delete privileges
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        # "rest_framework.permissions.IsAuthenticated",
-        "rest_framework.permissions.AllowAny",
-    ]
+        "rest_framework.permissions.IsAuthenticated",
+        # "rest_framework.permissions.AllowAny",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        # Sessions : Browsable API and the ability to log in & out.
+        # BasicAuthentication : pass the session ID in HTTP headers
+        # TokenAuthentication : Using the 'rest_framework.authtoken'
+        "rest_framework.authentication.SessionAuthentication",
+        # "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
 }
 
 MIDDLEWARE = [

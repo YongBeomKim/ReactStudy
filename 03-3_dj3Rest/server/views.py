@@ -34,6 +34,8 @@ def index(request):
         + '        value, extensions=["markdown.extensions.fenced_code"]\n'
         + ")\n"
         + "```\n"
+        + ""
+        + "My text in an purple box.\n{: .alert .alert-danger}\n"
     )
 
     content = {

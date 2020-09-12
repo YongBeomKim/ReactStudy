@@ -1,11 +1,12 @@
 # React-Study
 
-2020년 React.js Study with Django
+React.js Study with Django in 2020.
 
-> Start with Webpack
+> Starting Webpack
 
-> Hybrid with Django 3
+> React & Django 3 Working with Hybrid Applications
 
-# Sites
+# References Sites
 
-- **[gitignore 생성 Site](https://www.toptal.com/developers/gitignore)**
+- **[Building a SaaS Application with Django](https://www.saaspegasus.com/guides/)**
+- **[Gitignore](https://www.toptal.com/developers/gitignore)**

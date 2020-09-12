@@ -93,3 +93,52 @@ Django REST Frameworks’ built-in `TokenAuthentication` is deliberately quite b
 ### Default Authentication
 
 `DEFAULT-PERMISSION-CLASSES` was set to `AllowAny` before we updated it to `IsAuthenticated`.The `DEFAULT_AUTHENTICATION_CLASSES` are set by default to `SessionAuthentication` and `BasicAuthentication` in `settings.py` file.
+
+### Auth Token & EndPoints
+
+We will use `dj-rest-auth` in combination with `django-allauth` to simplify things. Make sure to note that **URLs** should have a **dash-** not an underscore \_, which is an easy mistake to make.
+
+```r
+$ pip install django-rest-auth
+$ pip install dj-rest-auth
+
+# $ pip install django-allauth
+# $ pip install djangorestframework-simplejwt
+```
+
+### User Registration
+
+Then update our `INSTALLED_APPS` setting. We must add several new configs `django.contrib.sites`, `allauth`, `allauth.account`, `allauth.socialaccount`, `dj_rest_auth.registration`
+
+```python
+# settings.py
+INSTALLED_APPS = [
+  ...
+  'django.contrib.sites',
+
+  # 3rd-party apps
+  'rest_framework',
+  'rest_framework.authtoken',
+  'allauth',
+  'allauth.account',
+  'allauth.socialaccount',
+  'dj_rest_auth',
+  'dj_rest_auth.registration',
+]
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_ID = 1
+
+```
+
+`REST_FRAMEWORK` setting is 1) Sessions : Browsable API and the ability to log in & out. 2) BasicAuthentication : `rest_framework.authentication.BasicAuthentication` is pass the session ID in HTTP headers but not Using this time, 3) TokenAuthentication : Using the 'rest_framework.authtoken' POST API.
