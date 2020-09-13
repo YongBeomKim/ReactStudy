@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "dj_rest_auth",
     "dj_rest_auth.registration",
-    # 'drf_yasg',
+    "drf_yasg",
     # User Created Apps
     "todos.apps.TodosConfig",
     "posts.apps.PostsConfig",

@@ -143,5 +143,99 @@ SITE_ID = 1
 
 `REST_FRAMEWORK` setting is 1) Sessions : Browsable API and the ability to log in & out. 2) BasicAuthentication : `rest_framework.authentication.BasicAuthentication` is pass the session ID in HTTP headers but not Using this time, 3) TokenAuthentication : Using the 'rest_framework.authtoken' POST API.
 
-My danger paragraph.
-{: .alert .alert-danger}
+<br/>
+
+## Chapter 8: Viewsets and Routers
+
+### Viewsets
+
+**Viewset** is a way to combine the logic for **multiple related views** into **a single class**. Almost the same as View classes, except operations **read** & **update**, not get & put.
+
+- **[ViewSet's url pattern names](https://kimdoky.github.io/django/2018/07/08/drf-Routers/)**
+- **[get_user_model()'s Django Document](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#referencing-the-user-model)**
+
+```python
+# views.py
+# Create your views here.
+from rest_framework import viewsets
+from django.contrib.auth import get_user_model
+from .models import Post
+from .serializers import PostSerializer, UserSerializer
+from .permissions import IsAuthorOrReadOnly
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthorOrReadOnly,)
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = get_user_model().objects.all()
+    serializer_class = UserSerializer
+```
+
+### Routers
+
+Django REST Framework has `SimpleRouter` and `DefaultRouter`. **SimpleRouter** is possible to create custom routers for more advanced functionality.
+
+```python
+from django.urls import path
+from rest_framework.routers import SimpleRouter
+from .views import UserViewSet, PostViewSet
+
+app_name = "posts"
+router = SimpleRouter()
+
+# URL PATTERN NAME : posts:post-list, post:post-detail
+router.register("", PostViewSet, basename="post")
+
+# URL PATTERN NAME : posts:user-list, posts:user-detail
+router.register("user", UserViewSet, basename="user")
+urlpatterns = router.urls
+```
+
+if your not define the `basename` then DRF is designate automatically URL PATTERN names. folloing is the sample of the names.
+
+```r
+URL path: ^users/$          URL Pattern Name: 'user-list'
+URL path: ^users/{pk}/$     URL Pattern Name: 'user-detail'
+URL path: ^accounts/$       URL Pattern Name: 'account-list'
+URL path: ^accounts/{pk}/$  URL Pattern Name: 'account-detail'
+```
+
+<br/>
+
+## Chapter 9: Schemas and Documentation
+
+**Schema** is a machine-readable document that outlines all available API. **Documentation** is something to makes it easier **for humans to read**.
+
+### Schemas
+
+Over the version 3.9, Django REST Framework switched firmly over to the OpenAPI(as Swagger) schema. Following will let us render our schema in the commonly used `YAML-based` OpenAPI format.
+
+```r
+$ pip install pyyaml
+$ pip install drf-yasg (OpenAPI decoing Module)
+$ python manage.py generateschema > openapi-schema.yml
+```
+
+If you open that file it’s quite long and not very human-friendly. But to a computer,it’s perfectly formatted
+
+```python
+from rest_framework.schemas import get_schema_view
+
+urlpatterns = [
+    ...
+    path("openapi/",
+        get_schema_view(
+            title="Blog API",
+            description="A sample API for learning DRF",
+            version="1.0.0",
+        ), name="openapi-schema", ),
+]
+```
+
+### Documentation
+
+Adding the 'drf_yasg' in the `INSTALLED_APPS = []`, we can replace DRF’s `get_schema_view` with the one from `drf_yasg` as well as importing `openapi`. Also add `DRF’s permission` for additional options.
