@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     # User Created Apps
     "accounts.apps.AccountsConfig",
+    "realtors.apps.RealtorsConfig",
 ]
 
 # React.js Rest Framework Setting..
