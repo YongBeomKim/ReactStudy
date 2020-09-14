@@ -56,14 +56,9 @@ INSTALLED_APPS = [
     "bootstrap4",
     # Rest Framework 3rd-party apps
     "rest_framework",
-    "rest_framework.authtoken",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "dj_rest_auth",
-    "dj_rest_auth.registration",
     "drf_yasg",
     # User Created Apps
+    "accounts.apps.AccountsConfig",
 ]
 
 # React.js Rest Framework Setting..
@@ -77,21 +72,24 @@ INSTALLED_APPS = [
 #       only authenticated users have write, edit, or delete privileges
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
         # "rest_framework.permissions.AllowAny",
+        "rest_framework.permissions.IsAuthenticated",
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        # Sessions : Browsable API and the ability to log in & out.
-        # TokenAuthentication : Using the 'rest_framework.authtoken'
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
+        # https://github.com/SimpleJWT/django-rest-framework-simplejwt/blob/master/docs/getting_started.rst
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 3,
 }
 
 SITE_ID = 1
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+FILE_UPLOAD_PERMISSIONS = 0o640
+# Setting Default User Model
+AUTH_USER_MODEL = "accounts.UserAccount"
 
-# Database Setting
+# DATABASE Setting
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 DATABASES = {"default": DATABASE_CONFIG}
 

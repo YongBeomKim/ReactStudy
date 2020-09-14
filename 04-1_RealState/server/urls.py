@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.schemas import get_schema_view
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -26,11 +28,13 @@ from .views import index
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", index, name="index"),
     path("api-auth/", include("rest_framework.urls")),
-    # Implement your own User Authentication End points
-    path("dj-rest-auth/", include("dj_rest_auth.urls")),
-    path("dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/accounts/", include("accounts.urls")),
+    # Catch many another routing...
+    # re_path(r"^.*", TemplateView.as_view(template_name="index.html")),
+    # path("", index, name="index"),
 ]
 
 # Adding the Django Rest Framework's Documents
