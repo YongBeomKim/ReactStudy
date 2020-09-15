@@ -9,53 +9,28 @@ Home
 {% endblock title %}
 
 {% block style %}
-<style>
-img {
-    border-radius: 8px;
-    border: 1px solid #b9b9b9;
-    box-shadow: 0px 0px 30px 1px #aaa;
-    max-width: 750px;
-    width: 100%;
-    height: auto;
-    border: 1px solid #999;
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 0px;
-}
-
-img.bookcover {
-    margin-bottom: 0rem;
-    width: 200px;
-    margin-bottom: 2rem;
-}
-</style>
 {% endblock style %}
 
 {% block nav %}
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="/">Dj3</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="{% url 'schema-ui' %}">Swagger</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="{% url 'schema-doc' %}">ReDOC</a>
-        </li>
-    </ul>
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+        <a class="nav-link" href="/">Dj3</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'schema-ui' %}">Swagger</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'schema-doc' %}">ReDOC</a>
+    </li>
+</ul>
 {% endblock nav %}
 
 {% block content %}
 <br />
-<h1>Django 3 Rest Framework</h1>
-<br />
-{{ content | markdown | safe }}
-<br />
-<img class='bookcover' src="{% static 'media/cover.jpg' %}">
+<h1>Real Estate</h1>
 <br />
 <div id="root" />
 {% endblock content %}
-
 
 {% block js %}
 <script src="{% react js_app_name %}"></script>

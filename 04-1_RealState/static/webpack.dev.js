@@ -9,7 +9,7 @@ module.exports = env => {
   return {
     watch: true,
     mode: 'development',
-    devtool: '#eval-source-map', //'source-map',
+    devtool: 'cheap-module-source-map', //'#eval-source-map', //'source-map',
     entry: {
       index: './src/index.jsx',
     },

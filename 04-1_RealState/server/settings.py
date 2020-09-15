@@ -54,12 +54,15 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django_extensions",
     "bootstrap4",
+    "corsheaders",
     # Rest Framework 3rd-party apps
     "rest_framework",
     "drf_yasg",
-    # User Created Apps
+    # User Created API Apps
     "accounts.apps.AccountsConfig",
     "realtors.apps.RealtorsConfig",
+    "listings.apps.ListingsConfig",
+    "contacts.apps.ContactsConfig",
 ]
 
 # React.js Rest Framework Setting..
@@ -85,10 +88,17 @@ REST_FRAMEWORK = {
 }
 
 SITE_ID = 1
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 FILE_UPLOAD_PERMISSIONS = 0o640
 # Setting Default User Model
 AUTH_USER_MODEL = "accounts.UserAccount"
+CORS_ORIGIN_ALLOW_ALL = True
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_PORT = 587
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "momukjilab@gmail.com"
+EMAIL_HOST_PASSWORD = "lime2019@@"
+EMAIL_USER_TLS = True
 
 # DATABASE Setting
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

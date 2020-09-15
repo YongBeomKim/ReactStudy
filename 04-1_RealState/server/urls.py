@@ -33,8 +33,11 @@ urlpatterns = [
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/accounts/", include("accounts.urls")),
     path("api/realtors/", include("realtors.urls")),
+    path("api/listings/", include("listings.urls")),
+    path("api/contacts/", include("contacts.urls")),
+    path("", index, name="home"),
     # Catch many another routing...
-    # re_path(r"^.*", TemplateView.as_view(template_name="index.html")),
+    re_path(r"^.*", TemplateView.as_view(template_name="index.html")),
     # path("", index, name="index"),
 ]
 
