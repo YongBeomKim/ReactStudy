@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load react %}
+{% load markdown_md %}
+
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+{% block nav %}
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+        <a class="nav-link" href="/">Dj3</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'schema-ui' %}">Swagger</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'schema-doc' %}">ReDOC</a>
+    </li>
+</ul>
+{% endblock nav %}
+
+{% block content %}
+<br />
+<h1>Real Estate</h1>
+<br />
+<div id="root" />
+{% endblock content %}
+
+{% block js %}
+<script src="{% react js_app_name %}"></script>
+<script>
+const props = {{props | safe}};
+</script>
+{% endblock js %}
