@@ -4,7 +4,7 @@ First Project is Adopting with my Django restframework, swagger and MARKDOWN Set
 
 **[Source GitHub](https://github.com/brkicb/realest_estate)**
 
-[![React Django](https://i.ytimg.com/vi/cfyOMEO7Kgs/hqdefault.jpg)](https://www.youtube.com/playlist?list=PLJRGQoqpRwddKppNx67QgSbPzYk5Aaq4b)
+[![React Django](https://i.ytimg.com/vi/cfyOMEO7Kgs/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB5E0rTKPR1JneypQjfax2fvrb3Gg)](https://www.youtube.com/playlist?list=PLJRGQoqpRwddKppNx67QgSbPzYk5Aaq4b)
 
 # Sites
 
