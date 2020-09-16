@@ -1,8 +1,12 @@
-## Setting Django3 with Swagger
+# Project 2 Jquery Dash Board
 
-First of React.js's Webpack setting, Adding the Django restframework, swagger and MARKDOWN in webpage, Inspired by the book of [Django3 for API](https://github.com/wsvincent/djangoforapis_30).
+Second Project is Django DashBoard Using Jquery, After that Jquery to change React.js to do myself.
 
-## Sites
+**[Source GitHub](https://github.com/CryceTruly/trulyexpensesyoutube)**
+
+[![Django DashBoard](https://i.ytimg.com/vi/gAI218HSK8s/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB87FLDaCfkKH6CoVdOvIPar1r66g)](https://www.youtube.com/playlist?list=PLx-q4INfd95G-wrEjKDAcTB1K-8n1sIiz)
+
+# Sites
 
 - **[Tutorial: Django REST with React](https://www.valentinog.com/blog/drf/)**
 - **[FrontEnd RSA & django RSA Backhand](https://blog.csdn.net/qq_41860162/article/details/89358772)**
