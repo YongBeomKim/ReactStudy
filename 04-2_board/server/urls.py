@@ -22,11 +22,16 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-from .views import index
 
+# Adding User functions
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", index, name="index"),
+    path("", include("expenses.urls")),
+    path("auth/", include("authentication.urls")),
+]
+
+# Adding RestFul Frameworks
+urlpatterns += [
     path("api-auth/", include("rest_framework.urls")),
     # Implement your own User Authentication End points
     path("dj-rest-auth/", include("dj_rest_auth.urls")),
@@ -55,7 +60,6 @@ urlpatterns += [
 
 # Adding the Media Folder Setting
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 
 # Adding Django Debug Tools
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html

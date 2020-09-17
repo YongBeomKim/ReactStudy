@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     "dj_rest_auth.registration",
     "drf_yasg",
     # User Created Apps
+    "expenses.apps.ExpensesConfig",
+    "authentication.apps.AuthenticationConfig",
 ]
 
 # React.js Rest Framework Setting..

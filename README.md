@@ -2,9 +2,15 @@
 
 React.js Study with Django in 2020.
 
-> Starting Webpack
+- Part Zero : Basic Setting
 
-> React & Django 3 Working with Hybrid Applications
+- Part One : with Webpack
+
+- part Two : using React.js
+
+- part Three : React & Django 3 Hybrid Applications
+
+- part Four : following Project
 
 # References Sites
 
