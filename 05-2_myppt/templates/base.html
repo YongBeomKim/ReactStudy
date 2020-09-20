@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Nomalization after that Bootstrap & Awesome Font -->
+    <link type="text/css" href="{% static 'public/normalize.min.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet"> 
+
+    <!-- MarkDown Highlight.js Style Add & Activated. -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+
+    <title>{% block title %}{% endblock title %}</title>
+
+    <!-- Main Body Style -->
+    <style>
+    body {
+        font-family: 'Kumbh Sans', sans-serif;
+    }
+    h1 {
+        padding-top: 25px;
+    }
+    nav {
+        font-family: 'Roboto Mono', monospace;
+        z-index: 1;
+    }
+    ul {
+        list-style:none;
+    }
+    </style>
+    
+    {% block style %}
+    {% endblock style %}
+</head>
+
+<body>
+<header>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    {% block nav %}
+    {% endblock nav %}
+    </div>
+</nav>
+</header>
+
+<!--
+<main role="main" class="container">
+</main>
+
+-->
+
+{% block content %}
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}
+
+</body>
+
+{% block js %}
+{% endblock js %}
+</html>

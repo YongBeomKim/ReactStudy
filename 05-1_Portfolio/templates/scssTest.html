@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+DEMO
+{% endblock title %}
+
+
+{% block content %}
+<h1>Hello World</h1>
+
+<div id="root"></div>
+{% endblock content %}
+
+
+{% block js %}
+{% comment 'webpack bundle' %}
+<!-- Production Mode JavaScript -->
+<script src="{% static 'dist/index.bundle.js' %}"></script>
+{% endcomment %}
+
+<!-- webpack dev server Hot Reloaded Module -->
+<script src="http://localhost:9000/index.bundle.js"></script>
+{% endblock js %}

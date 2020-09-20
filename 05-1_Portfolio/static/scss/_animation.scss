@@ -1,0 +1,79 @@
+@keyframes pulse {
+    from {
+        box-shadow: 0 0 0 0px rgba($color: #000000, $alpha: .6);
+        background: rgba($color: #000000, $alpha: 1.0);
+    }
+    to {
+        box-shadow: 0 0 0 100px rgba($color: #000000, $alpha: 0);
+        background: rgba($color: #000000, $alpha: 0);
+    }
+}
+
+@keyframes openTop {
+    0% {
+        transform: translateY(-5px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(90deg);
+    }
+}
+
+@keyframes openMid {
+   50% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(45deg);
+    }
+}
+
+@keyframes openBtm {
+    0% {
+        transform: translateY(5px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(90deg);
+    }
+}
+
+
+
+
+@keyframes closedTop {
+    0% {
+        transform: translateY(-5px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(90deg);
+    }
+}
+
+@keyframes closedMid {
+   50% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(45deg);
+    }
+}
+
+@keyframes closedBtm {
+    0% {
+        transform: translateY(5px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(90deg);
+    }
+}

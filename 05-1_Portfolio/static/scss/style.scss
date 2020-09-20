@@ -1,0 +1,16 @@
+@import '~include-media/dist/include-media';
+@import '~open-color/open-color';
+
+$body-color: red;   // 칼라값 선언
+
+h1 {
+  color: $body-color;
+}
+
+.SassCompnent {
+  display: flex;
+  background: $oc-gray-2;
+  @include media('<768px'){
+    background: $oc-gray-9;
+  }
+}

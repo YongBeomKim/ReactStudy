@@ -1,0 +1,14 @@
+.wrapper {
+    background: black;
+    font-size: 2rem;
+}
+
+.inverted {
+    color: purple;
+    background: white;
+}
+
+:global .something {
+    font-weight: 800;
+    color: darkslategray;
+}
