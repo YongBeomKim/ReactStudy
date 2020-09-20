@@ -1,25 +1,15 @@
 {% extends 'base.html' %}
-{% load static %}
-
-
-{% block title %}
-Home
-{% endblock title %}
-
-
-{% block style %}
-{% endblock style %}
-
 
 {% block content %}
+<div id="text">
+</div>
 {% endblock content %}
-
 
 {% block js %}
 <script>
 // run the script after full loading ..
 window.onload = function myActive() {
-  var element = document.getElementById("nav-home");
+  var element = document.getElementById("nav-pizza");
   element.classList.add("active");
 }
 </script>

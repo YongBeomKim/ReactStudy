@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "whitenoise.runserver_nostatic",
     "django_extensions",
-    "bootstrap4",
+    # "bootstrap4",
     # Rest Framework 3rd-party apps
     "rest_framework",
     "rest_framework.authtoken",
@@ -110,10 +110,10 @@ MIDDLEWARE = [
 
 # Adding the Django Debug Tools
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
-if socket.gethostname() == "pop-os":
-    INSTALLED_APPS += ["debug_toolbar"]
-    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
-    INTERNAL_IPS = "127.0.0.1"
+# if socket.gethostname() == "pop-os":
+#     INSTALLED_APPS += ["debug_toolbar"]
+#     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+#     INTERNAL_IPS = "127.0.0.1"
 
 ROOT_URLCONF = "server.urls"
 
@@ -121,7 +121,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [BASE_DIR / "templates"],
-        "APP_DIRS": True,
+        "APP_DIRS": False,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",

@@ -3,60 +3,53 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Nomalization after that Bootstrap & Awesome Font -->
-    <link type="text/css" href="{% static 'public/normalize.min.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet"> 
+  <!-- Nomalization after that Bootstrap & Awesome Font -->
+  <link type="text/css" href="{% static 'css/normalize.min.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <!-- MarkDown Highlight.js Style Add & Activated. -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script> 
+  <!-- jQuery, Popper, Latest compiled JavaScript library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <title>{% block title %}{% endblock title %}</title>
+  <title>{% block title %}{% endblock title %}</title>
 
-    <!-- Main Body Style -->
-    <style>
-    body {
-        font-family: 'Kumbh Sans', sans-serif;
-    }
-    h1 {
-        padding-top: 25px;
-    }
-    nav {
-        font-family: 'Roboto Mono', monospace;
-    }
-    </style>
-    
-    {% block style %}
-    {% endblock style %}
+  <!-- Main Body Style -->
+  {% block style %}
+  {% endblock style %}
 </head>
-
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    {% block nav %}
-    {% endblock nav %}
-    </div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="https://img.icons8.com/cotton/64/000000/beefburger.png" style="margin-bottom: 10px" alt="logo" style="width:40px;" class="logo" />
+  </a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li id="nav-home" class="nav-item">
+      <a class="nav-link" href="/">Home</a>
+    </li>
+    <li id="nav-pizza" class="nav-item">
+      <a class="nav-link" href="{% url 'food:pizza' %}">Pizzas</a>
+    </li>
+    <li id="nav-burgers" class="nav-item">
+      <a class="nav-link" hr ef="#">Burgers</a>
+    </li>
+  </ul>
 </nav>
 
-<main role="main" class="container">
 {% block content %}
 {% endblock content %}
-</main>
 
 {% block footer %}
 {% endblock footer %}
-
 </body>
 
-</script>
 {% block js %}
 {% endblock js %}
 </html>

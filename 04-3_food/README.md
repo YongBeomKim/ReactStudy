@@ -8,4 +8,7 @@ Second Project is simplify Django restaurant E-commerce App Using JS & Jquery, A
 
 # Sites
 
-- **[Bootstrap DashBoard](https://getbootstrap.com/docs/4.5/examples/dashboard/)**
+- [Bootstrap GET Start](https://www.w3schools.com/bootstrap4/bootstrap_get_started.asp)
+- [Bootstrap Navbar](https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_navbar_brand2&stacked=h)
+- [ICON8 - Burger](https://icons8.com/icons/set/burger)
+- [Run the javascript automatically](https://zuyo.tistory.com/525)

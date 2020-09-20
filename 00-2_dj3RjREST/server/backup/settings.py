@@ -10,23 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-import socket, json
-from pathlib import Path
+import socket, json, os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+# from pathlib import Path
+# BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 if socket.gethostname() == "pop-os":
-    with BASE_DIR.joinpath("_key.json") as f:
-        SECRET_KEY = json.loads(f.open().read())["django"]
+    # with BASE_DIR.joinpath("_key.json") as f:
+    #    SECRET_KEY = json.loads(f.open().read())["django"]
+    with open(os.path.join(BASE_DIR, "_key.json")) as f:
+        SECRET_KEY = json.loads(f.read())["django"]
     ALLOWED_HOSTS = ["*"]
     DEBUG = True
     DATABASE_CONFIG = {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        # "NAME": BASE_DIR / "db.sqlite3",
     }
 else:
     with open("/etc/_key.json", "r") as f:
@@ -39,7 +43,8 @@ else:
     DEBUG = False
     DATABASE_CONFIG = {
         "ENGINE": "django.db.backends.mysql",
-        "OPTIONS": {"read_default_file": BASE_DIR / "mysql.cnf"},
+        "OPTIONS": {"read_default_file": os.path.join(BASE_DIR, "mysql.cnf")},
+        # "OPTIONS": {"read_default_file": BASE_DIR / "mysql.cnf"},
     }
 
 # Application definition
@@ -53,6 +58,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "whitenoise.runserver_nostatic",
     "django_extensions",
+    "bootstrap4",
     # Rest Framework 3rd-party apps
     "rest_framework",
     "rest_framework.authtoken",
@@ -117,7 +123,8 @@ ROOT_URLCONF = "server.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        # "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -128,10 +135,10 @@ TEMPLATES = [
             ],
             # Template User Tags
             # https://docs.djangoproject.com/en/3.1/topics/templates/#module-django.template.backends.django
-            # "libraries": {
-            #     "react": "server.templatetags.react",
-            #     "markdown_md": "server.templatetags.markdown_md",
-            # },
+            "libraries": {
+                "react": "server.templatetags.react",
+                "markdown_md": "server.templatetags.markdown_md",
+            },
         },
     },
 ]
@@ -173,7 +180,8 @@ CACHES = {
         # 'LOCATION': 'my_cache_table',
         # >> FileBased Cache Activated Option
         # "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
-        # "LOCATION": BASE_DIR.joinpath(".cache"),
+        # "LOCATION": os.path.join(BASE_DIR, ".cache"),
+        # # "LOCATION": BASE_DIR.joinpath(".cache"),
     }
 }
 
@@ -181,25 +189,29 @@ CACHES = {
 # Static (Webapck Bundle file & Images), Static & Media folder is Merged.
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "static/media"
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
+# MEDIA_ROOT = BASE_DIR / "static/media"
 
 
 # Development & Production Static Folder Setting
 if socket.gethostname() == "pop-os":
     STATIC_URL = "/static/"
     STATICFILES_DIRS = [
-        (BASE_DIR / "static"),
+        os.path.join(BASE_DIR, "static"),
+        # (BASE_DIR / "static"),
     ]
     # Optionally provide a prefix as (prefix, path) tuples,
-    # ("style", BASE_DIR / "static/css")]
+    # [("style", BASE_DIR / "static/css")]
 
 else:
     # Whitenoise Staticfiles Setting
     # https://www.youtube.com/watch?v=qSrJt3UD9xk
     # $ python manage.py collectstatic
     STATIC_URL = "/static/"
-    STATIC_ROOT = [BASE_DIR / "staticfiles"]
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STATIC_ROOT = [os.path.join(BASE_DIR, "staticfiles")]
+    # STATIC_ROOT = [BASE_DIR / "staticfiles"]
+
 
 # # from django.contrib.auth.decorators import login_required
 # # https://stackoverflow.com/questions/3578882/how-to-specify-the-login-required-redirect-url-in-django
