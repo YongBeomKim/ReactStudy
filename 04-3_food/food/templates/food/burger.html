@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
 
-
 {% block content %}
-<h2 class="title">Our Pizzas</h2>
+<h2 class="title">Our Burgers</h2>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-8">
       <div class="row">
-        {% for pizza in pizzas %}
+        {% for pizza in burgers %}
         <div class="col-md-4 p-4">
 
           <img class="picture" src="{{ pizza.pImage }}">
@@ -39,11 +38,12 @@
 {% endblock content %}
 
 {% block js %}
+{% endblock js %}
+
 <script>
   // run the script after full loading ..
   //window.onload = function myActive() {
-  //  var element = document.getElementById("nav-pizza");
+  //  var element = document.getElementById("nav-burgers");
   //  element.classList.add("active");
   //}
 </script>
-{% endblock js %}

@@ -1,7 +1,8 @@
 from django.urls import path, include
-from .views import index
+from .views import pizza, burger
 
 app_name = "food"
 urlpatterns = [
-    path("", index, name="pizza"),
+    path("pizza", pizza, name="pizza"),
+    path("burger", burger, name="burger"),
 ]

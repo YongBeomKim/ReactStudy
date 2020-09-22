@@ -27,5 +27,6 @@ def index(request):
         "props": props,
         "js_app_name": js_app_name,
         "content": markdown,
+        "active_link": "index",
     }
     return render(request, "index.html", content)
