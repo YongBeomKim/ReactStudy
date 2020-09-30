@@ -12,7 +12,15 @@ and Next Step is using React in the front end sides. [YouTube Tutorial](https://
 
 <br/>
 
+# The Process of Git Sources
+
+- [django2 project boilerplate](https://github.com/justdjango/django_project_boilerplate)
+- [django2 ecommerce](https://github.com/justdjango/django-ecommerce)
+- [django3 simple ecommerce](https://github.com/justdjango/django-react-ecommerce)
+- [django-react-boilerplate](https://github.com/justdjango/django-react-boilerplate)
+
+<br/>
+
 # Sites
 
-- [django-react-boilerplate](https://github.com/justdjango/django-react-boilerplate)
 - **[django-rest-framework-simplejwt](https://github.com/SimpleJWT/django-rest-framework-simplejwt)**
