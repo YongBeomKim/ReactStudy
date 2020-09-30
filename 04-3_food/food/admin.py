@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pizza, Buger
+from .models import Pizza, Buger, Order, Item
 
 
 # Register your models here.
@@ -15,3 +15,5 @@ class BugerAdmin(admin.ModelAdmin):
 
 admin.site.register(Pizza, PizzaAdmin)
 admin.site.register(Buger, BugerAdmin)
+admin.site.register(Order)
+admin.site.register(Item)

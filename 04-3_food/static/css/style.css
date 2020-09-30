@@ -5,14 +5,45 @@
 .title {
     margin: 50px;
     text-align: center;
-    background-color: blue;
-    color: red;
+    /* background-color: blue;
+    color: red; */
 }
 
 .picture {
-    width: 300px;
+    width: 200px;
     border-radius: 50%;
-    height: 200px;
+    height: 150px;
+}
+
+#cart {
+    float: right;
+}
+
+.content {
+    position: relative;
+}
+
+.orders {
+    position: relative;
+    top: 100px;
+    line-height: 200%;
+}
+
+.del {
+    position: absolute;
+    right: 30px;
+    background-color: chocolate;
+    color: white;
+    width: 20px;
+    height: 22px;
+    padding-bottom: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.del:hover {
+    background-color: rgb(255, 124, 124);
 }
 
 .item-title {
@@ -32,4 +63,13 @@
     background-position: center center;
     background-repeat: no-repeat;
     z-index: -1;
+}
+
+li {
+    display: flex;
+}
+
+#id_username,
+#id_email {
+    background-color: aqua;
 }

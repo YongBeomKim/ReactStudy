@@ -1,37 +1,54 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 
 {% block content %}
-<h2 class="title">Our Pizzas</h2>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-8">
-      <div class="row">
-        {% for pizza in pizzas %}
-        <div class="col-md-4 p-4">
+<div class="content">
+  <div class="container-fluid">
 
-          <img class="picture" src="{{ pizza.pImage }}">
-          <h4 class="pt-3">{{ pizza.name }}</h4>
-          <div class="form-check-inline">
-            <label for="" class="form-check-label">
-              <input type="radio" class="form-check-input" checked>
-              {{ pizza.priceM }} $
-            </label>
+    <div class="row">
+      <div class="col-md-8">
+        <h2 class="title">Our Pizzas</h2>
+        <div class="row">
+          {% for pizza in pizzas %}
+          <div class="col-md-4 p-4">
+
+            <img class="picture" src="{{ pizza.pImage }}">
+            <h4 class="pt-3" id="piz{{pizza.id}}">{{ pizza.name }}</h4>
+
+            <div class="form-check-inline">
+              <label for="" class="form-check-label">
+                <input type="radio" name="pizza{{pizza.id}}" class="form-check-input" value="{{ pizza.priceM }}"
+                  checked>
+                M : {{ pizza.priceM }} $
+              </label>
+            </div>
+
+            <div class="form-check-inline">
+              <label for="" class="form-check-label">
+                <input type="radio" class="form-check-input" name="pizza{{pizza.id}}" value="{{ pizza.priceL }}">
+                L : {{ pizza.priceL }} $
+              </label>
+            </div>
+
+            <div>
+              <button class="btn-info mt-3" onclick="addPizza({{pizza.id}})">Add to cart</button>
+            </div>
+
+
           </div>
-
-          <div class="form-check-inline">
-            <label for="" class="form-check-label">
-              <input type="radio" class="form-check-input">
-              {{ pizza.priceL }} $
-            </label>
-          </div>
-
-          <button class="btn-info mt-3">Add to cart</button>
-
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
+
+      <div class="col-md-4 orders">
+        <div class="bg-dark p-4 rounded text-light">
+          <h2 class="text-center">Order list</h2>
+          <ul id="pcart"></ul>
+          <h4 class="text-right" id="ptotal">Total: 0 $</h4>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -39,11 +56,5 @@
 {% endblock content %}
 
 {% block js %}
-<script>
-  // run the script after full loading ..
-  //window.onload = function myActive() {
-  //  var element = document.getElementById("nav-pizza");
-  //  element.classList.add("active");
-  //}
-</script>
+<script src="{% static 'js/order.js' %}"></script>
 {% endblock js %}

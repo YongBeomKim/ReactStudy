@@ -17,39 +17,95 @@
   {% block style %}
   {% endblock style %}
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand/logo -->
-  <a class="navbar-brand" href="#">
-    <img src="https://img.icons8.com/cotton/64/000000/beefburger.png" style="margin-bottom: 10px" alt="logo" style="width:40px;" class="logo" />
-  </a>
-  
-  <!-- Links -->
-  <ul class="navbar-nav">
-    <li id="nav-home" class="nav-item">
-      <a class="nav-link {% if active_link == 'index' %}active{% endif %}" href="/">Home</a>
-    </li>
-    <li id="nav-pizza" class="nav-item">
-      <a class="nav-link {% if active_link == 'pizza' %}active{% endif %}" href="{% url 'food:pizza' %}">Pizzas</a>
-    </li>
-    <li id="nav-burgers" class="nav-item">
-      <a class="nav-link {% if active_link == 'burger' %}active{% endif %}" href="{% url 'food:burger' %}">Burgers</a>
-    </li>
-  </ul>
-</nav>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
-{% block content %}
-{% endblock content %}
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="/">
+      <img src="https://img.icons8.com/cotton/40/000000/beefburger.png" class="logo" />
+    </a>
 
-{% block footer %}
-{% endblock footer %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-targe="#mynav" aria-controls="mynav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="mynav">
+
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <li id="nav-home" class="nav-item">
+          <a class="nav-link {% if active_link == 'index' %}active{% endif %}" href="/">Home
+          </a>
+        </li>
+
+        <li id="nav-pizza" class="nav-item">
+          <a class="nav-link {% if active_link == 'pizza' %}active{% endif %}" href="{% url 'food:pizza' %}">Pizzas
+          </a>
+        </li>
+
+        <li id="nav-burgers" class="nav-item">
+          <a class="nav-link {% if active_link == 'burger' %}active{% endif %}" href="{% url 'food:burger' %}">Burgers
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated  %}
+        <li class="nav-item mt-2">
+         <h5 class="text-light pt-3 pr-4 ">{{ user.username }} Hi!</h5>
+         </li>  
+        {% endif %}
+        <li class="nav-item mt-2">
+          <a class="nav-link {% if active_link == 'order' %}active{% endif %}" 
+            href="{% url 'food:order' %}">
+            <img src="https://img.icons8.com/metro/26/000000/shopping-cart-loaded.png" />
+            <span id="cart"></span>
+          </a>
+        </li>
+
+        {% if user.is_authenticated %}
+        <!-- login activated -->
+        <li class="nav-item">
+          <a href="{% url 'food:logout' %}" class="nav-link">
+            <img class="bg-light ml-2 rounded-circle"
+              src="https://img.icons8.com/pastel-glyph/32/000000/user-male--v1.png" />
+            <br />Log-out
+          </a>
+        </li>
+
+        {% else %}
+        <li class="nav-item">
+          <a href="{% url 'food:login' %}" 
+            class="nav-link {% if active_link == 'login' %}active{% endif %}">
+            <img class="bg-light ml-2 rounded-circle"
+              src="https://img.icons8.com/pastel-glyph/32/000000/user-male--v1.png" />
+            <br />Log-in
+          </a>
+        </li>
+        {% endif %}
+        
+      </ul>
+    </div>
+  </nav>
+
+  {% block content %}
+  {% endblock content %}
+
+
+  {% block footer %}
+  {% endblock footer %}
 </body>
 
-  <!-- jQuery, Popper, Latest compiled JavaScript library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- jQuery, Popper, Latest compiled JavaScript library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
 {% block js %}
 {% endblock js %}
+
 </html>

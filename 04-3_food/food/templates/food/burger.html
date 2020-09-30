@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block content %}
@@ -7,43 +8,47 @@
   <div class="row">
     <div class="col-md-8">
       <div class="row">
-        {% for pizza in burgers %}
+        {% for burger in burgers %}
         <div class="col-md-4 p-4">
 
-          <img class="picture" src="{{ pizza.pImage }}">
-          <h4 class="pt-3">{{ pizza.name }}</h4>
+          <img class="picture" src="{{ burger.pImage }}">
+          <h4 class="pt-3" id="bur{{ burger.id }}">{{ burger.name }}</h4>
           <div class="form-check-inline">
             <label for="" class="form-check-label">
-              <input type="radio" class="form-check-input" checked>
-              {{ pizza.priceM }} $
+              <input type="radio" class="form-check-input" 
+                name="burger{{ burger.id }}" value="{{ burger.priceM }}" checked>
+              {{ burger.priceM }} $
             </label>
           </div>
 
           <div class="form-check-inline">
             <label for="" class="form-check-label">
-              <input type="radio" class="form-check-input">
-              {{ pizza.priceL }} $
+              <input type="radio" class="form-check-input"
+                name="burger{{ burger.id }}" value="{{ burger.priceM }}">
+              {{ burger.priceL }} $
             </label>
           </div>
 
-          <button class="btn-info mt-3">Add to cart</button>
+          <button class="btn-info mt-3" onclick="addBurger('{{ burger.id }}')">Add to cart</button>
 
         </div>
         {% endfor %}
       </div>
     </div>
+
+    <div class="col-md-4 orders">
+      <div class="bg-dark p-4 rounded text-light">
+        <h2 class="text-center">Order list</h2>
+        <ul id="bcart"></ul>
+        <h4 class="text-right" id="btotal">Total: 0 $</h4>
+      </div>
+    </div>
+
   </div>
-</div>
+</div> 
 
 {% endblock content %}
 
 {% block js %}
+<script src="{% static 'js/orderb.js' %}"></script>
 {% endblock js %}
-
-<script>
-  // run the script after full loading ..
-  //window.onload = function myActive() {
-  //  var element = document.getElementById("nav-burgers");
-  //  element.classList.add("active");
-  //}
-</script>

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+signUp
+{% endblock title %}
+
+
+{% block style %}
+{% endblock style %}
+
+
+{% block content %}
+<div class="container">
+    <div class="container-fluid p-5">
+        <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6 p-4 bg-dark text-light text-center">
+                <h3 class="">Sing Up</h3>
+                <a href={% url 'food:login' %} class="p-2">Log In</a>
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <div class="form-group">
+                        <div class="">{{ field.label_tag }}</div>
+                        <div class="">{{ field }}</div>
+                        {% if field.help_text %}
+                            <small style="color:gray">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <div>
+                        {% for error in form.errors %}
+                            <small style="color:red">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" class="btn-info" >SignUp</button>
+                </form>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{% endblock js %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Success
+{% endblock title %}
+
+
+{% block style %}
+{% endblock style %}
+
+
+{% block content %}
+<div class="container">
+    <div class="container-fluid">
+        <h1>We get the Orders :</h1>
+        <h2>order number : {{ orderNum }}</h2>
+        <h4>You have ordered :</h4>
+
+        {% for item in items %}
+        <h4>{{ item.name }} {{ item.size }} {{ item.price }}</h4>
+        {% endfor %}
+        
+        <h3>Total : {{ bill }} $</h3>
+        <h4>If you want to modify the order, please call us<br />
+            <small>Tel) 000-555-3333</small></h4>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{% endblock js %}
