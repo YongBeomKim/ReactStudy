@@ -8,11 +8,13 @@
 
 This Django Project is restaurant E-commerce App Using JS & Jquery, The Pizza Menu is work find but Burger is not working that choosing the size data.
 
-It is not changing simultaneously between IDE and webbrowser. Because of the web cache data. This is the reason, Using the Jquery & Vanilla Js is more difficult than react.js
-
-1 st finish work date is `2020.09.25`
+This project is following the [Majin Dev YouTube Channel](https://www.youtube.com/channel/UCu7jaqMRRr8xpljmT7urxYA) and the Project named is **[Fast-food app (Django / JS)](https://www.youtube.com/playlist?list=PL59NjN2r8ZIxVBiURygpQ0-Rft3VPYKAo)**
 
 [![Fast-food app (Django / JS)](https://i.ytimg.com/vi/JAEnbHIGq3c/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBFeIXf0FuiTYttB0wzy5P45-WdNQ)](https://www.youtube.com/playlist?list=PL59NjN2r8ZIxVBiURygpQ0-Rft3VPYKAo)
+
+It is not changing simultaneously between IDE and webbrowser. Because of the web cache data. This is the reason, Using the Jquery & Vanilla Js is more difficult than react.js
+
+1st finished work date is `2020.09.25`
 
 # Sites
 
