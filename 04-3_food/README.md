@@ -1,8 +1,16 @@
 # Project 4 Food App
 
-Second Project is simplify Django restaurant E-commerce App Using JS & Jquery, After that JS & Jquery be changed to React.js.
+![Django badge](https://img.shields.io/badge/{Django}-{3.1}-{blue}.svg)
 
-**[Source GitHub](https://github.com/CryceTruly/trulyexpensesyoutube)**
+![Jquery badge](https://img.shields.io/badge/{Jquery}-{3.5.1}-{orange}.svg)
+
+![Bootstrap badge](https://img.shields.io/badge/{Bootstrap}-{4.5.2}-{orange}.svg)
+
+This Django Project is restaurant E-commerce App Using JS & Jquery, The Pizza Menu is work find but Burger is not working that choosing the size data.
+
+It is not changing simultaneously between IDE and webbrowser. Because of the web cache data. This is the reason, Using the Jquery & Vanilla Js is more difficult than react.js
+
+1 st finish work date is `2020.09.25`
 
 [![Fast-food app (Django / JS)](https://i.ytimg.com/vi/JAEnbHIGq3c/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBFeIXf0FuiTYttB0wzy5P45-WdNQ)](https://www.youtube.com/playlist?list=PL59NjN2r8ZIxVBiURygpQ0-Rft3VPYKAo)
 

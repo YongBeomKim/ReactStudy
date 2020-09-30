@@ -53,48 +53,15 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "whitenoise.runserver_nostatic",
     "django_extensions",
-    # Rest Framework 3rd-party apps
-    "rest_framework",
-    "rest_framework.authtoken",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "dj_rest_auth",
-    "dj_rest_auth.registration",
-    "drf_yasg",
     # User Created Apps
     "food.apps.FoodConfig",
 ]
-
-# React.js Rest Framework Setting..
-# https://www.django-rest-framework.org/api-guide/settings/
-
-# "DEFAULT_PERMISSION_CLASSES" Settings..
-# • AllowAny : any user, authenticated or not, has full access
-# • IsAuthenticated : only authenticated, registered users have access
-# • IsAdminUser : only admins/superusers have access
-# • IsAuthenticatedOrReadOnly : unauthorized users can view, but
-#       only authenticated users have write, edit, or delete privileges
-REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
-        # "rest_framework.permissions.AllowAny",
-    ],
-    "DEFAULT_AUTHENTICATION_CLASSES": [
-        # Sessions : Browsable API and the ability to log in & out.
-        # TokenAuthentication : Using the 'rest_framework.authtoken'
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
-    ],
-}
-
-SITE_ID = 1
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Database Setting
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 DATABASES = {"default": DATABASE_CONFIG}
 
+SITE_ID = 1
 MIDDLEWARE = [
     # "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -127,12 +94,6 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
-            # Template User Tags
-            # https://docs.djangoproject.com/en/3.1/topics/templates/#module-django.template.backends.django
-            "libraries": {
-                "react": "server.templatetags.react",
-                "markdown_md": "server.templatetags.markdown_md",
-            },
         },
     },
 ]
@@ -158,26 +119,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = False
 
-# Django Cache Framework
-# https://docs.djangoproject.com/en/3.1/topics/cache/
-CACHES = {
-    "default": {
-        # >> Local-memory caching
-        # https://docs.djangoproject.com/en/3.1/topics/cache/#local-memory-caching
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": "unique-store",
-        # >> Memory Cache Acivated Option
-        # "BACKEND": "django.core.cache.backends.memcached.MemcachedCache",
-        # 'LOCATION': '127.0.0.1:11211',
-        # >> DataBase Cache Acivated Options
-        # 'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        # 'LOCATION': 'my_cache_table',
-        # >> FileBased Cache Activated Option
-        # "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
-        # "LOCATION": os.path.join(BASE_DIR, ".cache"),
-    }
-}
-
 
 # Static (Webapck Bundle file & Images), Static & Media folder is Merged.
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -191,11 +132,8 @@ if socket.gethostname() == "pop-os":
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "static"),
     ]
-    # Optionally provide a prefix as (prefix, path) tuples,
-    # [("style", BASE_DIR / "static/css")]
 
 else:
-    # Whitenoise Staticfiles Setting
     # https://www.youtube.com/watch?v=qSrJt3UD9xk
     # $ python manage.py collectstatic
     STATIC_URL = "/static/"
@@ -204,12 +142,3 @@ else:
     )
     STATIC_ROOT = [os.path.join(BASE_DIR, "staticfiles")]
     # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-
-# # from django.contrib.auth.decorators import login_required
-# # https://stackoverflow.com/questions/3578882/how-to-specify-the-login-required-redirect-url-in-django
-# LOGIN_URL = '/api-auth/login'
-# LOGIN_REDIRECT_URL = '/api-auth/login'
-# LOGIN_URL = "/admin/login"
-# LOGOUT_URL = "/"
-# LOGIN_REDIRECT_URL = "/admin/login"
