@@ -1,10 +1,10 @@
 # Project 4 Food App
 
-![Django badge](https://img.shields.io/badge/{Django}-{3.1}-{blue}.svg)
+![Django badge](https://img.shields.io/badge/Django-3.1-blue.svg)
 
-![Jquery badge](https://img.shields.io/badge/{Jquery}-{3.5.1}-{orange}.svg)
+![Jquery badge](https://img.shields.io/badge/Jquery-3.5.1-yellow.svg)
 
-![Bootstrap badge](https://img.shields.io/badge/{Bootstrap}-{4.5.2}-{orange}.svg)
+![Bootstrap badge](https://img.shields.io/badge/Bootstrap-4.5.2-orange.svg)
 
 This Django Project is restaurant E-commerce App Using JS & Jquery, The Pizza Menu is work find but Burger is not working that choosing the size data.
 
