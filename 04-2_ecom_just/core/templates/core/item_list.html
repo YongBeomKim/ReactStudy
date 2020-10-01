@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+items
+{% endblock title %}
+
+
+{% block content %}
+<h2>Here it the list of items.</h2>
+{% for item in items %}
+    name : {{item}} 
+{% endfor %}
+{% endblock content %}

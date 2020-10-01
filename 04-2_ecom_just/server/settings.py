@@ -54,16 +54,18 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "whitenoise.runserver_nostatic",
     "django_extensions",
-    # Rest Framework 3rd-party apps
-    "rest_framework",
-    "rest_framework.authtoken",
+    # Social Login
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    # Restful API Framework 3rd-party apps
+    "rest_framework",
+    "rest_framework.authtoken",
     "dj_rest_auth",
     "dj_rest_auth.registration",
     "drf_yasg",
     # User Created Apps
+    "core.apps.CoreConfig",
 ]
 
 # React.js Rest Framework Setting..
@@ -88,7 +90,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-SITE_ID = 1
+
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Database Setting
@@ -130,6 +132,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = "server.wsgi.application"
 
 # Password validation
@@ -142,6 +145,23 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+
+# django-allauth Setting
+# https://django-allauth.readthedocs.io/en/latest/installation.html
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+SITE_ID = 1
+
+# Provider specific settings
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#     }
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -179,13 +199,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
 
 
 # Development & Production Static Folder Setting
-# And Adding the Django Debug Tools
-# https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
 if socket.gethostname() == "pop-os":
-
-    INSTALLED_APPS += ["debug_toolbar"]
-    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
-    INTERNAL_IPS = "127.0.0.1"
 
     STATIC_URL = "/static/"
     STATICFILES_DIRS = [
@@ -194,6 +208,7 @@ if socket.gethostname() == "pop-os":
     # Optionally provide a prefix as (prefix, path) tuples,
     # [("style", BASE_DIR / "static/css")]
 
+
 else:
     # Using Whitenoise Staticfiles Setting.
     # https://www.youtube.com/watch?v=qSrJt3UD9xk
@@ -201,6 +216,14 @@ else:
     STATIC_URL = "/static/"
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
     STATIC_ROOT = [os.path.join(BASE_DIR, "staticfiles")]
+
+
+if DEBUG:
+    # And Adding the Django Debug Tools
+    # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+    INTERNAL_IPS = "127.0.0.1"
 
 
 # # from django.contrib.auth.decorators import login_required

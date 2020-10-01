@@ -27,7 +27,9 @@ from .views import index
 # User Apps
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", index, name="index"),
+    # path("", index, name="index"),
+    path("accounts/", include("allauth.urls")),
+    path("", include("core.urls")),
 ]
 
 # Adding the RESTFUL Frameworks API apps
@@ -63,9 +65,9 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Adding Django Debug Tools
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
-import debug_toolbar
-
 if settings.DEBUG:
+    import debug_toolbar
+
     urlpatterns += [
         path("__debug__/", include(debug_toolbar.urls)),
     ]
