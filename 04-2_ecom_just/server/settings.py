@@ -127,6 +127,7 @@ TEMPLATES = [
             "libraries": {
                 "react": "server.templatetags.react",
                 "markdown_md": "server.templatetags.markdown_md",
+                "cart_template_tags": "server.templatetags.cart_template_tags",
             },
         },
     },
