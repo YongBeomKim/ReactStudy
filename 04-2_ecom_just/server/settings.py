@@ -15,9 +15,9 @@ import socket, json, os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+# 1) Developer Mode Setting
 if socket.gethostname() == "pop-os":
     with open(os.path.join(BASE_DIR, "_key.json")) as f:
         SECRET_KEY = json.loads(f.read())["django"]
@@ -27,6 +27,8 @@ if socket.gethostname() == "pop-os":
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
+
+# 2) Production Mode Setting
 else:
     with open("/etc/_key.json", "r") as f:
         SECRET_KEY = json.loads(f.read())["django"]
@@ -104,13 +106,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# Adding the Django Debug Tools
-# https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
-if socket.gethostname() == "pop-os":
-    INSTALLED_APPS += ["debug_toolbar"]
-    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
-    INTERNAL_IPS = "127.0.0.1"
-
 ROOT_URLCONF = "server.urls"
 
 TEMPLATES = [
@@ -184,7 +179,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
 
 
 # Development & Production Static Folder Setting
+# And Adding the Django Debug Tools
+# https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
 if socket.gethostname() == "pop-os":
+
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+    INTERNAL_IPS = "127.0.0.1"
+
     STATIC_URL = "/static/"
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "static"),
@@ -193,7 +195,7 @@ if socket.gethostname() == "pop-os":
     # [("style", BASE_DIR / "static/css")]
 
 else:
-    # Whitenoise Staticfiles Setting
+    # Using Whitenoise Staticfiles Setting.
     # https://www.youtube.com/watch?v=qSrJt3UD9xk
     # $ python manage.py collectstatic
     STATIC_URL = "/static/"
