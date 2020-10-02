@@ -17,6 +17,7 @@ class HomeView(ListView):
     content = {"items": Item.objects.all()}
     return render(request, "core/home.html", content)"""
     model = Item
+    paginate_by = 10
     template_name = "core/home.html"
 
 

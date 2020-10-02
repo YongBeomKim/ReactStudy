@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "whitenoise.runserver_nostatic",
     "django_extensions",
+    "crispy_forms",
     # Social Login
     "allauth",
     "allauth.account",
@@ -161,6 +162,9 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 AUTH_USER_MODEL = "auth.User"
 
+# CRISPY FORMS
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 # Provider specific settings
 # SOCIALACCOUNT_PROVIDERS = {
 #     'google': {
@@ -237,3 +241,4 @@ if DEBUG:
 # LOGIN_URL = "/admin/login"
 # LOGOUT_URL = "/"
 # LOGIN_REDIRECT_URL = "/admin/login"
+LOGIN_REDIRECT_URL = "/"

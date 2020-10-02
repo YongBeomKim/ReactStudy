@@ -16,33 +16,41 @@ And Next Step is using React in the front end sides. [YouTube Tutorial](https://
 
 # **Django Scripts and Tips**
 
+<br/>
+
 ## Rename the Setting Folder
 
 following scripe can change the code related with setting folder.
 
 `$ python manage.py rename <change name>`
 
+<br/>
+
 ## Django Message Tags
 
 You can get more infomation at the [Django Project site](https://docs.djangoproject.com/en/3.1/ref/contrib/messages/)
 
-| Level | Constant Tag |
-|:======:|:============:|
-|DEBUG |debug |
-|INFO |info |
-|SUCCESS |success |
-|WARNING |warning |
-|ERROR |error |
+|  Level  | Constant Tag |
+| :-----: | :----------: |
+|  DEBUG  |    debug     |
+|  INFO   |     info     |
+| SUCCESS |   success    |
+| WARNING |   warning    |
+|  ERROR  |    error     |
 
-## Get tuple's second queryset
+<br/>
+
+## Template can get tuple's second queryset
 
 **[Django get the Category's second data](https://ssungkang.tistory.com/entry/Django-ChoiceField-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)** In this case, you want call the Tuple's first data is not easy to know what it is. then you can call the tuple's second data by following code.
 
 `get_{fieldname}_display`
 
-### reverse() & redirect()
+<br/>
 
-`reverse()` is using view function, `redirect()` using Model's function.
+## reverse() & redirect()
+
+`redirect()` using Model's function.
 
 ```python
 # views.py
@@ -52,18 +60,20 @@ def index(request, slug):
     return redirect("core:product", slug=slug)
 ```
 
+`reverse()` is using view function,
+
 ```python
+# models.py
 from django.shortcuts import reverse
 
 class Database(models.Model):
-    title = models.CharField(max_length=100)
     slug = models.SlugField()
 
     def get_absolute_url(self):
-        return reverse("core:product", kwargs={"slug": self.slug})
+        return reverse("core:list", kwargs={"slug": self.slug})
 
     def get_add_to_cart_url(self):
-        return reverse("core:add-to-cart", kwargs={"slug": self.slug})
+        return reverse("core:cart", kwargs={"slug": self.slug})
 ```
 
 <br/>
@@ -81,3 +91,4 @@ class Database(models.Model):
 
 - **[MDBootstrap E-commerce GitHub](https://github.com/mdbootstrap/Ecommerce-Template-Bootstrap)**
 - **[django-rest-framework-simplejwt](https://github.com/SimpleJWT/django-rest-framework-simplejwt)**
+- **[django allauth template](https://github.com/pennersr/django-allauth/tree/master/allauth/templates)**
