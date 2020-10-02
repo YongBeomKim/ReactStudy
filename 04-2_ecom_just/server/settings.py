@@ -156,7 +156,10 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
+# allauth default setting.
+# https://wayhome25.github.io/django/2017/05/18/django-auth/
 SITE_ID = 1
+AUTH_USER_MODEL = "auth.User"
 
 # Provider specific settings
 # SOCIALACCOUNT_PROVIDERS = {
