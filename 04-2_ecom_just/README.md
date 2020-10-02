@@ -89,6 +89,9 @@ class Database(models.Model):
 
 ## Sites
 
+- **[MDBootstrap Table](https://mdbootstrap.com/docs/jquery/tables/basic/)**
+- **[MDBootstrap Tab Component](https://mdbootstrap.com/docs/jquery/components/tabs/)**
+- **[MDBootstrap Icons](https://mdbootstrap.com/docs/jquery/content/icons-list/)**
 - **[MDBootstrap E-commerce GitHub](https://github.com/mdbootstrap/Ecommerce-Template-Bootstrap)**
 - **[django-rest-framework-simplejwt](https://github.com/SimpleJWT/django-rest-framework-simplejwt)**
 - **[django allauth template](https://github.com/pennersr/django-allauth/tree/master/allauth/templates)**

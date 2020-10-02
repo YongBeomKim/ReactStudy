@@ -3,6 +3,9 @@ from django.views.generic import View, ListView, DetailView
 from django.shortcuts import redirect
 from django.utils import timezone
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Item, OrderItem, Order
 
 # Create your views here.
@@ -26,6 +29,18 @@ class ItemDetailView(DetailView):
     template_name = "core/product.html"
 
 
+class OrderSummaryView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            content = {"object": order}
+            return render(self.request, "core/order_summary.html", content)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("core:home")
+
+
+@login_required
 def add_to_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
     order_item, created = OrderItem.objects.get_or_create(
@@ -42,10 +57,12 @@ def add_to_cart(request, slug):
             order_item.quantity += 1
             order_item.save()
             messages.info(request, "This item quantity was updated.")
+            return redirect("core:order-summary")
         else:
             # adding new item
-            messages.info(request, "This Item was added to your cart.")
             order.items.add(order_item)
+            messages.info(request, "This Item was added to your cart.")
+            return redirect("core:order-summary")
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
@@ -54,6 +71,7 @@ def add_to_cart(request, slug):
     return redirect("core:product", slug=slug)
 
 
+@login_required
 def remove_from_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
     order_queryset = Order.objects.filter(user=request.user, ordered=False)
@@ -69,6 +87,7 @@ def remove_from_cart(request, slug):
             )[0]
             order.items.remove(order_item)
             messages.warning(request, "This item was removed from your cart.")
+            return redirect("core:order-summary")
         else:
             # add a message saying the User doesnt have an Order
             messages.warning(request, "This item was not in your cart.")
@@ -78,3 +97,40 @@ def remove_from_cart(request, slug):
         # add a message saying the User doesnt have an Order
         messages.info(request, "You do not have an active order.")
         return redirect("core:product", slug=slug)
+
+
+@login_required
+def remove_count_from_cart(request, slug):
+    item = get_object_or_404(Item, slug=slug)
+    order_queryset = Order.objects.filter(user=request.user, ordered=False)
+
+    # filtering by `User`
+    if order_queryset.exists():
+        order = order_queryset[0]
+
+        # Checking the `item` is in the `order`
+        if order.items.filter(item__slug=item.slug).exists():
+            order_item = OrderItem.objects.filter(
+                item=item, user=request.user, ordered=False
+            )[0]
+
+            if order_item.quantity == 1:
+                order_item.quantity -= 1
+                order.items.remove(order_item)
+            elif order_item.quantity == 0:
+                order.items.remove(order_item)
+            else:
+                order_item.quantity -= 1
+            order_item.save()
+            messages.warning(request, "This item quantity was updated.")
+            return redirect("core:order-summary")
+        else:
+            # add a message saying the User doesnt have an Order
+            messages.warning(request, "This item was not in your cart.")
+            return redirect("core:product")
+
+    else:
+        # add a message saying the User doesnt have an Order
+        messages.info(request, "You do not have an active order.")
+        return redirect("core:product")
+
