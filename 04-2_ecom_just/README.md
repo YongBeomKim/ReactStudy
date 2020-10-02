@@ -22,6 +22,18 @@ following scripe can change the code related with setting folder.
 
 `$ python manage.py rename <change name>`
 
+## Django Message Tags
+
+You can get more infomation at the [Django Project site](https://docs.djangoproject.com/en/3.1/ref/contrib/messages/)
+
+| Level | Constant Tag |
+|:======:|:============:|
+|DEBUG |debug |
+|INFO |info |
+|SUCCESS |success |
+|WARNING |warning |
+|ERROR |error |
+
 ## Get tuple's second queryset
 
 **[Django get the Category's second data](https://ssungkang.tistory.com/entry/Django-ChoiceField-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)** In this case, you want call the Tuple's first data is not easy to know what it is. then you can call the tuple's second data by following code.
