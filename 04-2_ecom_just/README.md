@@ -78,6 +78,14 @@ class Database(models.Model):
 
 <br/>
 
+## django plugins
+
+- **[django-rest-framework-simplejwt](https://github.com/SimpleJWT/django-rest-framework-simplejwt)**
+- **[django allauth template](https://github.com/pennersr/django-allauth/tree/master/allauth/templates)**
+- **[django-countries](https://github.com/SmileyChris/django-countries)**
+
+<br/>
+
 ## The Process of Git Sources
 
 - **[django2 project boilerplate](https://github.com/justdjango/django_project_boilerplate)**
@@ -93,5 +101,3 @@ class Database(models.Model):
 - **[MDBootstrap Tab Component](https://mdbootstrap.com/docs/jquery/components/tabs/)**
 - **[MDBootstrap Icons](https://mdbootstrap.com/docs/jquery/content/icons-list/)**
 - **[MDBootstrap E-commerce GitHub](https://github.com/mdbootstrap/Ecommerce-Template-Bootstrap)**
-- **[django-rest-framework-simplejwt](https://github.com/SimpleJWT/django-rest-framework-simplejwt)**
-- **[django allauth template](https://github.com/pennersr/django-allauth/tree/master/allauth/templates)**

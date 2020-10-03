@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     "dj_rest_auth.registration",
     "drf_yasg",
     # User Created Apps
+    "django_countries",
     "core.apps.CoreConfig",
 ]
 
