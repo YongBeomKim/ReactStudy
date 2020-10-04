@@ -101,3 +101,6 @@ class Database(models.Model):
 - **[MDBootstrap Tab Component](https://mdbootstrap.com/docs/jquery/components/tabs/)**
 - **[MDBootstrap Icons](https://mdbootstrap.com/docs/jquery/content/icons-list/)**
 - **[MDBootstrap E-commerce GitHub](https://github.com/mdbootstrap/Ecommerce-Template-Bootstrap)**
+- **[Stripe Element Form](https://stripe.com/docs/stripe-js)**
+- **[Stripe Charge Python](https://stripe.com/docs/api/charges/create?lang=python)**
+- **[Stripe Error Handling Python](https://stripe.com/docs/api/errors/handling?lang=python)**

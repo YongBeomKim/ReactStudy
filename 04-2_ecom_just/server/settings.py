@@ -166,6 +166,10 @@ AUTH_USER_MODEL = "auth.User"
 # CRISPY FORMS
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
+# Stripe API Token
+# https://stripe.com/docs/api/charges/create?lang=python
+STRIPE_SECRET_KEY = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"
+
 # Provider specific settings
 # SOCIALACCOUNT_PROVIDERS = {
 #     'google': {

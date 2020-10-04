@@ -4,6 +4,7 @@ from .views import (
     CheckoutView,
     ItemDetailView,
     OrderSummaryView,
+    PaymentView,
     add_to_cart,
     remove_from_cart,
     remove_count_from_cart,
@@ -23,4 +24,5 @@ urlpatterns = [
         remove_count_from_cart,
         name="remove-count-from-cart",
     ),
+    path("payment/<payment_option>/", PaymentView.as_view(), name="payment"),
 ]

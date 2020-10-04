@@ -1,0 +1,42 @@
+<script src="https://js.stripe.com/v3/"></script>
+
+<form action="." method="post" id="stripe-form">
+  {% csrf_token %}
+  <div class="stripe-form-row">
+    <label for="card-element" id="stripeBtnlabel">
+      Credit or debit card
+    </label>
+    <div id="card-element" class="StripeElement StripeElement--empty">
+      <div class="__PrivateStripeElement"
+        style="margin: 0px !important; padding: 0px !important; border: none !important; display: block !important; background: transparent !important; position: relative !important; opacity: 1 !important;">
+        <iframe frameborder="0" allowtransparency="true" scrolling="no" name="__privateStripeFrame1565"
+          allowpaymentrequest="true"
+          src="https://js.stripe.com/v3/elements-inner-card-05737d64aae5c278658f57f604c80778.html#style[base][color]=%2332325d&amp;style[base][fontFamily]=%22Helvetica+Neue%22%2C+Helvetica%2C+sans-serif&amp;style[base][fontSmoothing]=antialiased&amp;style[base][fontSize]=16px&amp;style[base][::placeholder][color]=%23aab7c4&amp;style[invalid][color]=%23fa755a&amp;style[invalid][iconColor]=%23fa755a&amp;componentName=card&amp;wait=false&amp;rtl=false&amp;keyMode=test&amp;apiKey=pk_test_TYooMQauvdEDq54NiTphI7jx&amp;origin=https%3A%2F%2Fstripe.com&amp;referrer=https%3A%2F%2Fstripe.com%2Fdocs%2Fstripe-js&amp;controllerId=__privateStripeController1561"
+          title="Secure card payment input frame"
+          style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translateZ(0px) !important; height: 19.2px;"></iframe><input
+          class="__PrivateStripeElement-input" aria-hidden="true" aria-label=" " autocomplete="false" maxlength="1"
+          style="border: none !important; display: block !important; position: absolute !important; height: 1px !important; top: 0px !important; left: 0px !important; padding: 0px !important; margin: 0px !important; width: 100% !important; opacity: 0 !important; background: transparent !important; pointer-events: none !important; font-size: 16px !important;">
+      </div>
+    </div>
+
+    <!-- Used to display form errors. -->
+    <div id="card-errors" role="alert"></div>
+  </div>
+
+  <button id="stripeBtnbutton">Submit Payment</button>
+</form>
+
+<div id="stripe-token-handler" class="is-hidden">
+  Success! Got token: <span class="token"></span>
+</div>
+<iframe frameborder="0" allowtransparency="true" scrolling="no" name="__privateStripeController1561"
+  allowpaymentrequest="true"
+  src="https://js.stripe.com/v3/controller-4d9e2748fded80eb3cb59929da42d98b.html#apiKey=pk_test_TYooMQauvdEDq54NiTphI7jx&amp;stripeJsId=d9c14e5c-39f0-4c09-8939-5c777d03bacf&amp;stripeJsLoadTime=1601723156971&amp;origin=https%3A%2F%2Fstripe.com&amp;referrer=https%3A%2F%2Fstripe.com%2Fdocs%2Fstripe-js&amp;controllerId=__privateStripeController1561"
+  aria-hidden="true" tabindex="-1"
+  style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;"></iframe>
+
+<iframe frameborder="0" allowtransparency="true" scrolling="no" name="__privateStripeMetricsController1560"
+  allowpaymentrequest="true"
+  src="https://js.stripe.com/v3/m-outer-f05f675c791120d177d112a6bf98fc69.html#url=https%3A%2F%2Fstripe.com%2Fdocs%2Fstripe-js&amp;title=&amp;referrer=&amp;muid=469fd5ef-63ff-4b37-aa94-1e2fad12d12f6111f0&amp;sid=9bab2b45-e230-4cf5-a587-93a06b03e74ed15840&amp;version=6&amp;preview=true"
+  aria-hidden="true" tabindex="-1"
+  style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;"></iframe>

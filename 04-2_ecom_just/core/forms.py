@@ -11,8 +11,11 @@ PAYMENT_CHOICES = (
 
 class CheckoutForm(forms.Form):
 
+    r"""Checkout form
     # RadioSelect : only select One.
     # CheckboxInput : each can checking.
+    """
+
     address_street = forms.CharField(
         widget=forms.TextInput(attrs={"placeholder": "123 Street NY"})
     )
