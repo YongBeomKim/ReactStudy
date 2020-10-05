@@ -17,8 +17,10 @@
 
             <div class="card">
               <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
-                  alt="">
+              <!-- https://stackoverflow.com/questions/15322391/django-the-image-attribute-has-no-file-associated-with-it -->
+              {% if item.image %}
+                <img src="{{ item.image.url }}" class="card-img-top" alt="">
+              {% endif %}
                 <a href="{{ item.get_absolute_url }}">
                   <div class="mask rgba-white-slight"></div>
                 </a>

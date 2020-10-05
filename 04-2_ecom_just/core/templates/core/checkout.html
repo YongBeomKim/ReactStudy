@@ -36,12 +36,12 @@
               <!--Grid column-->
               <div class="col-lg-4 col-md-12 mb-4">
                 <label for="country">Country</label>
-                  <div>
-                    {{ form.countries }}
-                  </div>
+                <div>
+                  {{ form.countries }}
+                </div>
                 <!-- <select required>
                   <option value="">Choose...</option>
-                </select> -->                
+                </select> -->
                 <div class="invalid-feedback">
                   Please select a valid country.
                 </div>
@@ -64,15 +64,15 @@
             <hr>
 
             <div class="custom-control custom-checkbox">
-            <input {% if form.same_billing_address %}checked{% endif %}
-              type="checkbox" class="custom-control-input" id="same-address">
+              <input {% if form.same_billing_address %}checked{% endif %} type="checkbox" class="custom-control-input"
+                id="same-address">
               <label class="custom-control-label" for="same-address">
                 Shipping address is the same as my billing address
               </label>
             </div>
             <div class="custom-control custom-checkbox">
-            <input {% if form.save_info %}checked{% endif %}
-              type="checkbox" class="custom-control-input" id="save-info">
+              <input {% if form.save_info %}checked{% endif %} type="checkbox" class="custom-control-input"
+                id="save-info">
               <label class="custom-control-label" for="save-info">
                 Save this information for next time
               </label>
@@ -81,13 +81,13 @@
             <hr>
             <div class="d-block my-3">
               {% for value, name in  form.fields.payment_option.choices %}
-              <div class="custom-control custom-radio"> 
-                <input id="{{ name }}" name="payment_option" type="radio" 
-                  class="custom-control-input" value="{{ value }}" required>
+              <div class="custom-control custom-radio">
+                <input id="{{ name }}" name="payment_option" type="radio" class="custom-control-input"
+                  value="{{ value }}" required>
                 <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
-                  <!-- <input name="paymentMethod" type="radio"> -->
+                <!-- <input name="paymentMethod" type="radio"> -->
               </div>
-              {% endfor %} 
+              {% endfor %}
             </div>
 
             <hr class="mb-4">
@@ -99,6 +99,12 @@
         </div>
         <!--/.Card-->
 
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-md-4 mb-4">
+        {% include "core/order_snippet.html" %}
       </div>
       <!--Grid column-->
 

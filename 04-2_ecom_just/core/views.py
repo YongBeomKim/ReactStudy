@@ -7,8 +7,8 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Item, OrderItem, Order, BillingAddress
-from .forms import CheckoutForm
+from .models import Item, OrderItem, Order, BillingAddress, Coupon
+from .forms import CheckoutForm, CouponForm
 
 # Create Payment api
 
@@ -22,10 +22,19 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class CheckoutView(View):
     def get(self, *args, **kwargs):
-        form = CheckoutForm()
-        content = {"form": form}
-        print("GET Checking the process...")
-        return render(self.request, "core/checkout.html", content)
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            form = CheckoutForm()
+            content = {
+                "form": form,
+                "couponform": CouponForm(),
+                "order": order,
+                "DISPLAY_COUPON_FORM": False,
+            }
+            return render(self.request, "core/checkout.html", content)
+        except ObjectDoesNotExist:
+            messages.info(self.request, "You do not have an active order")
+            return redirect("core:checkout")
 
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
@@ -64,17 +73,22 @@ class CheckoutView(View):
                 return redirect("core:checkout")
 
         except ObjectDoesNotExist:
-            messages.error(self.request, "You do not have an active order")
+            messages.warning(self.request, "You do not have an active order")
             return redirect("core:order-summary")
 
 
 class PaymentView(View):
     def get(self, *args, **kwargs):
         order = Order.objects.get(user=self.request.user, ordered=False)
-        content = {
-            "order": order,
-        }
-        return render(self.request, "core/payment.html", content)
+        if order.billing_address:
+            content = {
+                "order": order,
+                "DISPLAY_COUPON_FORM": False,
+            }
+            return render(self.request, "core/payment.html", content)
+        else:
+            messages.warning(self.request, "You have not added a billing address")
+            return redirect("core:checkout")
 
     def post(self, *args, **kwargs):
         order = Order.objects.get(user=self.request.user, ordered=False)
@@ -95,6 +109,11 @@ class PaymentView(View):
             payment.amount = amount
             payment.save()
             # assign the payment to the order
+            order_items = order.items.all()
+            order_items.update(ordered=True)
+            for item in order_items:
+                item.save()
+
             order.ordered = True
             order.payment = payment
             order.save()
@@ -104,25 +123,25 @@ class PaymentView(View):
         except stripe.error.CardError as e:
             body = e.json_body
             error = body.get("error", {})
-            messages.error(self.request, f"{error.get('message')}")
+            messages.warning(self.request, f"{error.get('message')}")
             return redirect("core:home")
         except stripe.error.RateLimitError as e:
-            messages.error(self.request, "RateLimitError")
+            messages.warning(self.request, "RateLimitError")
             return redirect("core:home")
         except stripe.error.InvalidRequestError as e:
-            messages.error(self.request, "RateLimiInvalidRequestErrortError")
+            messages.warning(self.request, "RateLimiInvalidRequestErrortError")
             return redirect("core:home")
         except stripe.error.AuthenticationError as e:
-            messages.error(self.request, "AuthenticationError")
+            messages.warning(self.request, "AuthenticationError")
             return redirect("core:home")
         except stripe.error.APIConnectionError as e:
-            messages.error(self.request, "APIConnectionError")
+            messages.warning(self.request, "APIConnectionError")
             return redirect("core:home")
         except stripe.error.StripeError as e:
-            messages.error(self.request, "Something went wrong. Try again")
+            messages.warning(self.request, "Something went wrong. Try again")
             return redirect("core:home")
         except Exception as e:
-            messages.error(self.request, "A serious error occurred")
+            messages.warning(self.request, "A serious error occurred")
             return redirect("core:home")
 
 
@@ -147,7 +166,7 @@ class OrderSummaryView(LoginRequiredMixin, View):
             content = {"object": order}
             return render(self.request, "core/order_summary.html", content)
         except ObjectDoesNotExist:
-            messages.error(self.request, "You do not have an active order")
+            messages.warning(self.request, "You do not have an active order")
             return redirect("core:home")
 
 
@@ -245,3 +264,28 @@ def remove_count_from_cart(request, slug):
         messages.info(request, "You do not have an active order.")
         return redirect("core:product")
 
+
+# get the Coupon function
+def get_coupon(request, code):
+    try:
+        coupon = Coupon.objects.get(code=code)
+        return coupon
+    except ObjectDoesNotExist:
+        messages.info(request, "This coupon does not exist")
+        return redirect("core:checkout")
+
+
+class AddCouponView(View):
+    def post(self, *args, **kwargs):
+        form = CouponForm(self.request.POST or None)
+        if form.is_valid():
+            try:
+                code = form.cleaned_data.get("code")
+                order = Order.objects.get(user=self.request.user, ordered=False)
+                order.coupon = get_coupon(self.request, code)
+                order.save()
+                messages.success(self.request, "Successfuly added coupon")
+                return redirect("core:checkout")
+            except ObjectDoesNotExist:
+                messages.info(self.request, "You do not have an active order")
+                return redirect("core:checkout")
