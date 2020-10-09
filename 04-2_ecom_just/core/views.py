@@ -7,17 +7,19 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Item, OrderItem, Order, BillingAddress, Coupon
-from .forms import CheckoutForm, CouponForm
+from .models import Item, OrderItem, Order, BillingAddress, Coupon, Payment, Refund
+from .forms import CheckoutForm, CouponForm, RefundForm
 
 # Create Payment api
+import stripe, random, string
 
-import stripe
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe.api_key = settings.STRIPE_PUBLIC_KEY
 
 
 # Create your views here.
+def create_ref_code():
+    """k=20 : length of string"""
+    return "".join(random.choices(string.ascii_lowercase + string.digits, k=20))
 
 
 class CheckoutView(View):
@@ -84,6 +86,7 @@ class PaymentView(View):
             content = {
                 "order": order,
                 "DISPLAY_COUPON_FORM": False,
+                "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY,
             }
             return render(self.request, "core/payment.html", content)
         else:
@@ -95,16 +98,17 @@ class PaymentView(View):
 
         # `source` is obtained with Stripe.js
         # https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
-        token = self.request.POST.get("stripeToken")
+        # token = self.request.POST.get("stripeToken")
         amount = order.get_total() * 100  # by cents
 
         # Stripe API Error Handling
         # https://stripe.com/docs/api/errors/handling?lang=python
         try:
-            charge = stripe.Charge.create(amount=amount, currency="usd", source=token,)
+            # Passing the Charging Process
+            # charge = stripe.Charge.create(amount=amount, currency="usd", source=token,)
             # Create the Payment
-            payment = payment()
-            payment.stripe_charge_id = charge["id"]
+            payment = Payment()
+            # payment.stripe_charge_id = charge["id"]
             payment.user = self.request.user
             payment.amount = amount
             payment.save()
@@ -116,6 +120,7 @@ class PaymentView(View):
 
             order.ordered = True
             order.payment = payment
+            order.ref_code = create_ref_code()
             order.save()
             messages.success(self.request, "Your order was successful")
             return redirect("core:home")
@@ -141,7 +146,7 @@ class PaymentView(View):
             messages.warning(self.request, "Something went wrong. Try again")
             return redirect("core:home")
         except Exception as e:
-            messages.warning(self.request, "A serious error occurred")
+            messages.warning(self.request, "A got error but success occurred")
             return redirect("core:home")
 
 
@@ -289,3 +294,38 @@ class AddCouponView(View):
             except ObjectDoesNotExist:
                 messages.info(self.request, "You do not have an active order")
                 return redirect("core:checkout")
+
+
+class RequestRefundView(View):
+    def get(self, *args, **kwargs):
+        form = RefundForm()
+        content = {
+            "form": form,
+        }
+        return render(self.request, "core/request_refund.html", content)
+
+    def post(self, *args, **kwargs):
+        form = RefundForm(self.request.POST)
+        if form.is_valid():
+            ref_code = form.cleaned_data.get("ref_code")
+            message = form.cleaned_data.get("message")
+            email = form.cleaned_data.get("email")
+
+            # edit the order
+            try:
+                order = Order.objects.get(ref_code)
+                order.refund_requested = True
+                order.save()
+
+                # refund at the store
+                refund = Refund()
+                refund.order = order
+                refund.reason = message
+                refund.email = email
+                refund.save()
+                messages.info(self.request, "Your request was received.")
+
+            except ObjectDoesNotExist:
+                messages.info(self.request, "This order does not exist.")
+                return redirect("/")
+
