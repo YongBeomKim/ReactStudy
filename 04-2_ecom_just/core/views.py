@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Item, OrderItem, Order, BillingAddress, Coupon, Payment, Refund
+from .models import Item, OrderItem, Order, Address, Coupon, Payment, Refund
 from .forms import CheckoutForm, CouponForm, RefundForm
 
 # Create Payment api
@@ -49,12 +49,13 @@ class CheckoutView(View):
                 zip_code = form.cleaned_data.get("zip_code")
                 # same_billing_address = form.cleaned_data.get("same_billing_address")
                 # save_info = form.cleaned_data.get("save_info")
-                billing_address = BillingAddress(
+                billing_address = Address(
                     user=self.request.user,
                     address_street=address_street,
                     address_apartment=address_apartment,
                     countries=countries,
                     zip_code=zip_code,
+                    address_type="B",
                 )
                 billing_address.save()
                 order.billing_address = billing_address

@@ -78,6 +78,27 @@ class Database(models.Model):
 
 <br/>
 
+## Adding the ModelAdmin
+
+**[Django Project description](https://docs.djangoproject.com/en/3.1/ref/contrib/admin/#django.contrib.admin.ModelAdmin)** and **[Korean Blog](https://wayhome25.github.io/django/2017/03/22/django-ep8-django-admin/)**
+
+```python
+# core/admin.py
+def make_refund_accepted(modeladmin, request, queryset):
+    # action queryset
+    queryset.update(refund_requested=False, refund_granted=True)
+
+# the option message
+make_refund_accepted.short_description = "Update orders to refund granted"
+
+class OrderAdmin(admin.ModelAdmin):
+    actions = [
+        make_refund_accepted,
+    ]
+```
+
+<br/>
+
 ## django plugins
 
 - **[django-rest-framework-simplejwt](https://github.com/SimpleJWT/django-rest-framework-simplejwt)**

@@ -4,65 +4,116 @@
 {% block content %}
 <main class="mt-5 pt-4">
   <div class="container wow fadeIn">
-    <!-- Heading -->
     <h2 class="my-5 h2 text-center">Checkout form</h2>
 
     <!--Grid row-->
     <div class="row">
+
       <!--Grid column-->
       <div class="col-md-8 mb-4">
-        <!--Card-->
         <div class="card">
-
-          <!--Card content-->
+          <!--form content-->
           <form method="POST" class="card-body">
             {% csrf_token %}
-            <!--address-->
-            <div class="md-form mb-5">
-              {{form.address_street}}
-              <!-- <input type="text" placeholder="1234 Main St"> -->
-              <label for="address" class="">Address</label>
-            </div>
-
-            <!--address-2-->
-            <div class="md-form mb-5">
-              {{form.address_apartment}}
-              <!-- <input type="text" placeholder="Apartment or suite"> -->
-              <label for="address-2" class="">Address 2 (optional)</label>
-            </div>
-
-            <!--Grid row-->
-            <div class="row">
-              <!--Grid column-->
-              <div class="col-lg-4 col-md-12 mb-4">
-                <label for="country">Country</label>
-                <div>
-                  {{ form.countries }}
-                </div>
-                <!-- <select required>
-                  <option value="">Choose...</option>
-                </select> -->
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
+            <h3>Shipping Address</h3>
+            <div class="hideable_shipping_form">
+              <div class="md-form mb-5 pt-3">
+                {{form.address_street}}
+                <!-- <input type="text" placeholder="1234 Main St"> -->
+                <label for="address" class="">Address</label>
               </div>
-              <!--Grid column-->
 
-              <!--Grid column-->
-              <div class="col-lg-4 col-md-6 mb-4">
-                <label for="zip">Zip</label>
-                <!-- <input type="text" required> -->
-                {{ form.zip_code }}
-                <div class="invalid-feedback">
-                  Zip code required.
-                </div>
+              <!--address-2-->
+              <div class="md-form mb-5 pt-3">
+                {{form.address_apartment}}
+                <!-- <input type="text" placeholder="Apartment or suite"> -->
+                <label for="address-2" class="">Address 2 (optional)</label>
               </div>
-              <!--Grid column-->
+
+              <!--Grid row-->
+              <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-12 mb-4">
+                  <label for="country">Country</label>
+                  <div>
+                    {{ form.countries }}
+                  </div>
+                  <!-- <select required>
+                    <option value="">Choose...</option>
+                  </select> -->
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <label for="zip">Zip</label>
+                  <!-- <input type="text" required> -->
+                  {{ form.zip_code }}
+                  <div class="invalid-feedback">
+                    Zip code required.
+                  </div>
+                </div>
+                <!--Grid column-->
+              </div>
+              <!--Grid row-->
+              <hr>
             </div>
-            <!--Grid row-->
 
-            <hr>
+            <!-- 09-Defaultaddresse 12 Min.. -->
+            {% comment %} 
+            <h3>Billing Address</h3>
+            <div class="hideable_shipping_form">
+              <div class="md-form mb-5 pt-3">
+                {{form.address_street}}
+                <!-- <input type="text" placeholder="1234 Main St"> -->
+                <label for="address" class="">Address</label>
+              </div>
 
+              <!--address-2-->
+              <div class="md-form mb-5 pt-3">
+                {{form.address_apartment}}
+                <!-- <input type="text" placeholder="Apartment or suite"> -->
+                <label for="address-2" class="">Address 2 (optional)</label>
+              </div>
+
+              <!--Grid row-->
+              <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-12 mb-4">
+                  <label for="country">Country</label>
+                  <div>
+                    {{ form.countries }}
+                  </div>
+                  <!-- <select required>
+                    <option value="">Choose...</option>
+                  </select> -->
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <label for="zip">Zip</label>
+                  <!-- <input type="text" required> -->
+                  {{ form.zip_code }}
+                  <div class="invalid-feedback">
+                    Zip code required.
+                  </div>
+                </div>
+                <!--Grid column-->
+              </div>
+              <!--Grid row-->
+              <hr>
+            </div> 
+            {% endcomment %}
+
+            <h3>Payment Option</h3>
+            <!-- Payment Process -->
             <div class="custom-control custom-checkbox">
               <input {% if form.same_billing_address %}checked{% endif %} type="checkbox" class="custom-control-input"
                 id="same-address">
@@ -78,7 +129,8 @@
               </label>
             </div>
 
-            <hr>
+
+
             <div class="d-block my-3">
               {% for value, name in  form.fields.payment_option.choices %}
               <div class="custom-control custom-radio">
