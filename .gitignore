@@ -3,6 +3,7 @@
 
 # dependencies
 **/.vscode
+**/venv
 **/node_modules
 **/dist
 **/migrations
