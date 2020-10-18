@@ -5,7 +5,18 @@ from django.contrib.auth.models import (
     AbstractBaseUser,
     PermissionsMixin,
     BaseUserManager,
+    UserManager,
 )
+
+from django.db.models import Q
+
+
+class CustomUserManager(UserManager):
+    def get_by_natural_key(self, username):
+        return self.get(
+            Q(**{self.model.USERNAME_FIELD: username})
+            | Q(**{self.model.EMAIL_FIELD: username})
+        )
 
 
 class UserAccountManager(BaseUserManager):
@@ -26,6 +37,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    objects = CustomUserManager()
     # objects =
 
     USERNAME_FIELD = "email"
@@ -40,5 +52,8 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-    class Meta:
-        proxy = True
+    def get_by_natural_key(self, username):
+        return self.get(**{self.model.USERNAME_FIELD: username})
+
+    # class Meta:
+    #     proxy = True
