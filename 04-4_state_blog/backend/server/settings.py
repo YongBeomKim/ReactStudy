@@ -138,9 +138,18 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+        # "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+        # "rest_framework.permissions.IsAuthenticated",
+        # "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+        "rest_framework.permissions.AllowAny",
     ]
 }
+
+# • AllowAny : any user, authenticated or not, has full access
+# • IsAuthenticated : only authenticated, registered users have access
+# • IsAdminUser : only admins/superusers have access
+# • IsAuthenticatedOrReadOnly : unauthorized users can view, but
+#       only authenticated users have write, edit, or delete privileges
 
 # django summnernote : Django 3 setting
 X_FRAME_OPTIONS = "SAMEORIGIN"

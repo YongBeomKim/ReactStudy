@@ -33,3 +33,26 @@ class BlogPost(models.Model):
     month = models.CharField(max_length=3)
     day = models.CharField(max_length=2)
     content = models.TextField()
+    featured = models.BooleanField(default=False)
+    date_created = models.DateTimeField(default=datetime.now, blank=True)
+
+    def save(self, *args, **kwargs):
+        original_slug = slugify(self.title)
+        count = BlogPost.objects.filter(slug__iexact=original_slug).count()
+
+        if count != 0:
+            slug = original_slug + "-" + str(count + 1)
+        else:
+            slug = original_slug
+        self.slug = slug
+
+        if self.featured:
+            try:
+                temp = BlogPost.objects.get(featured=True)
+                temp.save()
+            except BlogPost.DoesNotExist:
+                pass
+        super(BlogPost, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title

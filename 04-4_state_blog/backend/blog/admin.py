@@ -2,14 +2,19 @@ from django.contrib import admin
 
 # Register your models here.
 
-# Django Summernote Setting.
+# Django Summernote Setting
 # https://github.com/summernote/django-summernote
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Post
+from .models import BlogPost
 
 
-class PostAdmin(SummernoteModelAdmin):
+class BlogPostAdmin(SummernoteModelAdmin):
+    # exclude = ("slug",)
+    list_display = ("id", "title", "category", "date_created")
+    list_display_links = ("id", "title")
+    search_fields = ("title",)
+    list_per_page = 25
     summernote_fields = ("content",)
 
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(BlogPost, BlogPostAdmin)
