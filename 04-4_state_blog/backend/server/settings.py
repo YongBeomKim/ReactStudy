@@ -15,8 +15,8 @@ import json
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -63,8 +63,8 @@ ROOT_URLCONF = "server.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "build"],
-        # "DIRS": [os.path.join(BASE_DIR), "build"],
+        # "DIRS": [BASE_DIR / "build"],
+        "DIRS": [os.path.join(BASE_DIR), "build"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -86,8 +86,8 @@ WSGI_APPLICATION = "server.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        # "NAME": os.path.join(BASE_DIR, "db.sqlite3")
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3")
+        # "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -160,3 +160,4 @@ SUMMERNOTE_THEME = "bs4"
 # django cors headers
 # https://pypi.org/project/django-cors-headers/
 CORS_ALLOW_ALL_ORIGINS = True
+FILE_UPLOAD_PERMISSIONS = 0o640

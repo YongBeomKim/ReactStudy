@@ -22,7 +22,8 @@ if socket.gethostname() == "pop-os":
     with open(os.path.join(BASE_DIR, "_key.json")) as f:
         SECRET_KEY = json.loads(f.read())["django"]
     ALLOWED_HOSTS = ["*"]
-    DEBUG = True
+    # DEBUG = True
+    DEBUG = False
     DATABASE_CONFIG = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
@@ -188,6 +189,7 @@ if socket.gethostname() == "pop-os":
     STATIC_URL = "/static/"
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "static"),
+        ("dist", os.path.join(BASE_DIR, "static/dist")),
     ]
     # Optionally provide a prefix as (prefix, path) tuples,
     # [("style", BASE_DIR / "static/css")]

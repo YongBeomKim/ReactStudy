@@ -63,7 +63,8 @@ img.bookcover {
 
 
 {% block js %}
-<script src="{% react js_app_name %}"></script>
+{% comment %} <script src="{% react js_app_name %}"></script> {% endcomment %}
+<script src="{% static 'dist/index.bundle.js' %}"></script>
 <script>
 const props = {{props | safe}};
 </script>

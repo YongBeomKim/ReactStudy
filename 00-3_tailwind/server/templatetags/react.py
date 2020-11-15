@@ -19,7 +19,9 @@ def react(app_name, port=3000):
     # When webpack dev server port is 3000 ...
     dev_server_link = f"http://localhost:{port}/{app_name}"
     # Build file name & location ....
-    file_name = f"dist/{app_name}"
+    file_name = f"static/dist/{app_name}"
+    file_name = "dist/" + app_name
+    print(app_name)
 
     try:
         # First Checking dev server & link local bundle file
